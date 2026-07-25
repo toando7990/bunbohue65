@@ -1,0 +1,18 @@
+{
+  "overview": "Worker dashboard và auth unification cho ahamove-worker: fix auth gap, thêm heartbeat tracking, retry policy, cập nhật worker JS, gộp Dashboard + Config thành 1 page.",
+  "features": [
+    "Thống nhất workerPrincipal auth cho ahamove worker (config + callback)",
+    "Heartbeat tracking + retry policy config backend",
+    "Ahamove worker JS: Ed25519KeyIdentity, poll 15s, heartbeat, exponential backoff",
+    "Gộp Worker Dashboard + Worker Config thành 1 page với tabs"
+  ],
+  "category": "productivity",
+  "tags": [
+    "worker",
+    "auth",
+    "heartbeat",
+    "retry",
+    "dashboard"
+  ],
+  "last_updated": "2026-07-24T15:54:39.104Z"
+}

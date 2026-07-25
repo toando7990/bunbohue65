@@ -1,0 +1,19 @@
+{
+  "name": "bkav-worker",
+  "version": "1.0.0",
+  "description": "BKAV e-invoice worker for TableOrder",
+  "main": "bkav-worker.js",
+  "scripts": {
+    "start": "node bkav-worker.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^2.1.3",
+    "@dfinity/candid": "^2.1.3",
+    "@dfinity/identity": "^2.1.3",
+    "@dfinity/principal": "^2.1.3",
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,0 +1,311 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Instrument Serif", serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.625rem;
+
+    --background: 0.97 0.015 75;
+    --foreground: 0.18 0.025 40;
+    --card: 0.99 0.008 75;
+    --card-foreground: 0.18 0.025 40;
+    --popover: 0.99 0.008 75;
+    --popover-foreground: 0.18 0.025 40;
+
+    --primary: 0.5 0.22 27.33;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.92 0.018 75;
+    --secondary-foreground: 0.25 0 0;
+    --muted: 0.92 0.018 75;
+    --muted-foreground: 0.5 0 0;
+
+    --accent: 0.55 0.1 160;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --success: 0.6 0.18 145;
+    --success-foreground: 0.98 0 0;
+    --warning: 0.78 0.16 75;
+    --warning-foreground: 0.2 0.04 75;
+
+    --qr-surface: 1 0 0;
+    --qr-surface-foreground: 0.18 0.025 40;
+
+    --border: 0.9 0 0;
+    --input: 0.9 0 0;
+    --ring: 0.5 0.22 27.33;
+
+    --chart-1: 0.5 0.22 27.33;
+    --chart-2: 0.55 0.1 160;
+    --chart-3: 0.6 0.12 185;
+    --chart-4: 0.83 0.19 84;
+    --chart-5: 0.77 0.19 70;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.18 0.025 40;
+    --sidebar-primary: 0.5 0.22 27.33;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.92 0.018 75;
+    --sidebar-accent-foreground: 0.25 0 0;
+    --sidebar-border: 0.9 0 0;
+    --sidebar-ring: 0.5 0.22 27.33;
+
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --overlay-dark: rgba(0, 0, 0, 0.35);
+  }
+
+  .dark {
+    --background: 0.12 0.015 75;
+    --foreground: 0.95 0 0;
+    --card: 0.15 0.008 75;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.2 0.008 75;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.65 0.2 27.33;
+    --primary-foreground: 0.12 0.015 75;
+
+    --secondary: 0.2 0.008 75;
+    --secondary-foreground: 0.85 0 0;
+    --muted: 0.2 0.008 75;
+    --muted-foreground: 0.55 0 0;
+
+    --accent: 0.65 0.08 160;
+    --accent-foreground: 0.12 0.015 75;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.95 0 0;
+
+    --success: 0.7 0.16 145;
+    --success-foreground: 0.12 0.015 75;
+    --warning: 0.82 0.14 75;
+    --warning-foreground: 0.18 0.04 75;
+
+    --qr-surface: 0.98 0 0;
+    --qr-surface-foreground: 0.95 0 0;
+
+    --border: 0.25 0.008 75;
+    --input: 0.25 0.008 75;
+    --ring: 0.65 0.2 27.33;
+
+    --chart-1: 0.65 0.2 27.33;
+    --chart-2: 0.65 0.08 160;
+    --chart-3: 0.77 0.19 70;
+    --chart-4: 0.63 0.27 304;
+    --chart-5: 0.65 0.25 16;
+
+    --sidebar: 0.15 0.008 75;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.65 0.2 27.33;
+    --sidebar-primary-foreground: 0.12 0.015 75;
+    --sidebar-accent: 0.2 0.008 75;
+    --sidebar-accent-foreground: 0.85 0 0;
+    --sidebar-border: 0.25 0.008 75;
+    --sidebar-ring: 0.65 0.2 27.33;
+
+    --glass-bg: rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  @font-face {
+    font-family: "Instrument Serif";
+    src: url("/assets/fonts/InstrumentSerif.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "DM Sans";
+    src: url("/assets/fonts/DMSans.woff2") format("woff2");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+    font-weight: 400;
+  }
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Waiter View Display Board ───────────────────────────────────────────── */
+.waiter-view-display {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: oklch(var(--muted) / 0.05);
+  border-top: 1px solid oklch(var(--border));
+  font-size: 0.875rem;
+  color: oklch(var(--muted-foreground) / 0.8);
+  font-family: var(--font-body);
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.payment-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: oklch(var(--card));
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid oklch(var(--border) / 0.5);
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.breakdown-row.total {
+  padding-top: 0.75rem;
+  border-top: 1px solid oklch(var(--border) / 0.3);
+  font-size: 1rem;
+  font-weight: 600;
+  color: oklch(var(--primary));
+}
+
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+}
+
+.glass-dark {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+}
+
+.crossfade {
+  transition: opacity 1000ms ease-in-out;
+}
+
+/* ─── Dynamic QR Payment ─────────────────────────────────────────────────── */
+.qr-surface {
+  background-color: oklch(var(--qr-surface));
+  color: oklch(var(--qr-surface-foreground));
+}
+
+.qr-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  border: 1px solid oklch(var(--border) / 0.5);
+}
+
+.qr-status-badge.is-pending {
+  background-color: oklch(var(--warning) / 0.15);
+  color: oklch(var(--warning-foreground));
+  border-color: oklch(var(--warning) / 0.4);
+}
+
+.qr-status-badge.is-paid {
+  background-color: oklch(var(--success) / 0.15);
+  color: oklch(var(--success-foreground));
+  border-color: oklch(var(--success) / 0.4);
+}
+
+.qr-status-badge.is-expired {
+  background-color: oklch(var(--muted));
+  color: oklch(var(--muted-foreground));
+}
+
+.qr-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: currentColor;
+}
+
+.qr-status-dot.is-pending {
+  animation: status-pulse 1.6s ease-in-out infinite;
+}
+
+.qr-cancel-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-family: var(--font-body);
+  background-color: oklch(var(--destructive));
+  color: oklch(var(--destructive-foreground));
+  border: 1px solid oklch(var(--destructive));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qr-cancel-btn:hover:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.qr-cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qr-cancel-btn.is-ghost {
+  background-color: transparent;
+  color: oklch(var(--destructive));
+  border-color: oklch(var(--destructive) / 0.4);
+}
+
+.qr-cancel-btn.is-ghost:hover:not(:disabled) {
+  background-color: oklch(var(--destructive) / 0.08);
+}
+
+.scroll-snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}

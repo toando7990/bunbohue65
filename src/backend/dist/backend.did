@@ -1,0 +1,1479 @@
+type WorkerStatusResponse = 
+ record {
+   retryPolicy: RetryPolicy;
+   workers: vec WorkerStatus;
+ };
+type WorkerStatus = 
+ record {
+   alive: bool;
+   lastHeartbeatAt: int;
+   workerId: text;
+ };
+type WeeklyAnalyticsEntry = 
+ record {
+   totalOrders: nat;
+   totalRevenue: nat;
+   weekStart: text;
+ };
+type VatInfo = 
+ record {
+   accountNo: opt text;
+   address: text;
+   buyerName: text;
+   email: text;
+   taxCode: opt text;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UpdateMasterMenuItemRequest = 
+ record {
+   categoryId: opt nat;
+   description: opt text;
+   imageUrl: opt text;
+   name: opt text;
+   position: opt nat;
+   price: opt nat;
+   unit: opt text;
+ };
+type UpdateMasterCategoryRequest = 
+ record {
+   name: opt text;
+   position: opt nat;
+ };
+type TransactionInfo = 
+ record {
+   amount: opt nat;
+   bankCode: opt text;
+   paidAt: opt text;
+   paymentMethod: opt text;
+   reference: opt text;
+   transactionCode: opt text;
+ };
+type TingeeBanksCallback = record {banks: vec TingeeBank;};
+type TingeeBank = 
+ record {
+   bankBin: text;
+   bankCode: text;
+   bankLogo: text;
+   bankName: text;
+   shortName: text;
+ };
+type Timestamp = int;
+type TableId = nat;
+type Table = 
+ record {
+   id: TableId;
+   qrCodeUrl: text;
+   restaurantId: RestaurantId;
+   tableNumber: text;
+ };
+type SuggestionConfig = 
+ record {
+   maxAddOns: nat;
+   maxDrinks: nat;
+   suggestionsEnabled: bool;
+ };
+type StaffRole = 
+ variant {
+   Admin;
+   Cashier;
+   Delivery;
+   KioskOrder;
+   Kitchen;
+   Waiter;
+ };
+type StaffMember = 
+ record {
+   role: StaffRole;
+   staffId: principal;
+ };
+type ShippingTransferStatus = 
+ variant {
+   completed;
+   failed;
+   notRequired;
+   notStarted;
+   pending;
+ };
+type ShippingStatus = 
+ variant {
+   Delivering;
+   DeliveryFailed;
+   PickedUp;
+   SearchingShipper;
+   ShipperAccepted;
+ };
+type ShippingFeeMode = 
+ variant {
+   CustomerPays;
+   RestaurantPays;
+ };
+type ShipperBookingResult = 
+ record {
+   distanceKm: opt float64;
+   provider: text;
+   shipperName: opt text;
+   shipperPhone: opt text;
+   shippingFee: opt nat;
+ };
+type SavedRecipientInfo = 
+ record {
+   locationName: text;
+   recipientName: text;
+   recipientPhone: text;
+ };
+type RetryPolicy = 
+ record {
+   backoffMultiplier: float64;
+   baseDelayMs: nat;
+   maxDelayMs: nat;
+   maxRetries: nat;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type RestaurantPublic = 
+ record {
+   address: text;
+   autoPaymentConfirmationApp: AutoPaymentApp;
+   autoPaymentConfirmationEnabled: bool;
+   bannerImageUrl: opt text;
+   brand1Name: opt text;
+   brand2Name: opt text;
+   brand3Name: opt text;
+   brand4Name: opt text;
+   brand5Name: opt text;
+   coordinateLatitude: opt float64;
+   coordinateLongitude: opt float64;
+   deliveryRadiusKm: opt nat;
+   deliveryServiceHours: opt text;
+   id: RestaurantId;
+   name: text;
+   ownerId: principal;
+   staffMembers: vec StaffMember;
+   stripeEnabled: bool;
+   stripePublishableKey: opt text;
+   tableServiceHours: opt text;
+ };
+type RestaurantLocationUpdate = 
+ record {
+   address: opt text;
+   coordinateLatitude: opt float64;
+   coordinateLongitude: opt float64;
+   deliveryRadiusKm: opt nat;
+ };
+type RestaurantId = nat;
+type ReservationStatus = 
+ variant {
+   Arrived;
+   Cancelled;
+   Confirmed;
+   Pending;
+ };
+type ReservationPublic = 
+ record {
+   createdAt: Timestamp;
+   customerEmail: opt text;
+   customerName: text;
+   customerPhone: text;
+   date: text;
+   durationMinutes: nat;
+   id: ReservationId;
+   notes: opt text;
+   partySize: nat;
+   restaurantId: RestaurantId;
+   status: ReservationStatus;
+   tableId: opt TableId;
+   timeSlot: text;
+ };
+type ReservationId = nat;
+type PendingInvoiceItem = 
+ record {
+   buyerAddress: text;
+   buyerName: text;
+   createdAt: int;
+   customerCompanyAddress: opt text;
+   customerCompanyName: opt text;
+   customerTaxCode: opt text;
+   isDemo: bool;
+   isRetailInvoice: bool;
+   items: vec OrderItem;
+   orderId: OrderId;
+   restaurantId: RestaurantId;
+   totalAmount: nat;
+   vatInfo: opt VatInfo;
+ };
+type PendingDynamicQROp = 
+ variant {
+   delete;
+   generate;
+   status;
+ };
+type PendingDynamicQRItem = 
+ record {
+   amount: nat;
+   billId: text;
+   idempotencyKey: text;
+   operation: PendingDynamicQROp;
+   orderCode: text;
+   orderId: OrderId;
+   qrId: text;
+ };
+type PendingAhamoveBookingItem = 
+ record {
+   customerName: text;
+   customerPhone: text;
+   dropoffAddress: text;
+   dropoffLat: opt float64;
+   dropoffLng: opt float64;
+   orderCode: text;
+   orderId: text;
+   pickupAddress: text;
+   pickupLat: opt float64;
+   pickupLng: opt float64;
+   restaurantId: nat;
+   restaurantName: text;
+   serviceId: text;
+   totalAmount: nat;
+ };
+type PaymentStatus = 
+ variant {
+   Failed;
+   Paid;
+   Pending;
+   SepayExpired;
+   SepayPaid;
+   SepayPending;
+   TingeeExpired;
+   TingeePaid;
+   TingeePending;
+   Unpaid;
+   WaitingDriverPayment;
+ };
+type PaymentMethod__1 = 
+ variant {
+   ApplePay;
+   BankTransfer;
+   CashierTerminal;
+   Cod;
+   CreditCard;
+   CustomerOnline;
+   SepayQR;
+   Stripe;
+   TingeeQR;
+ };
+type PaymentMethod = 
+ variant {
+   BankTransfer;
+   Card;
+   Cash;
+   Other: text;
+ };
+type OrderType = 
+ variant {
+   DeliveryOrder;
+   TableOrder;
+ };
+type OrderTrackingPublic = 
+ record {
+   ahamoveOrderId: opt text;
+   deliveryLat: opt float64;
+   deliveryLng: opt float64;
+   dispatchNote: opt text;
+   driverInfo: opt DriverInfo;
+   findingDriverSince: opt int;
+   invoiceDate: opt text;
+   invoiceNo: opt text;
+   invoicePdfUrl: opt text;
+   invoiceStatus: InvoiceStatus;
+   maCQT: opt text;
+   maTraCuu: opt text;
+   orderId: OrderId;
+   orderType: OrderType;
+   paymentConfirmedAt: opt Timestamp;
+   paymentStatus: PaymentStatus;
+   shipperName: opt text;
+   shipperPhone: opt text;
+   shippingFee: opt nat;
+   shippingProvider: opt text;
+   shippingStatus: opt ShippingStatus;
+   status: OrderStatus;
+ };
+type OrderStatus = 
+ variant {
+   Cancelled;
+   Completed;
+   Delivered;
+   DispatchCenter;
+   FindingDriver;
+   PaymentPending;
+   Pending;
+   PendingApproval;
+   Preparing;
+   Ready;
+   WaitingDriver;
+   WaitingDriverPayment;
+ };
+type OrderPublic = 
+ record {
+   ahamoveOrderId: opt text;
+   createdAt: Timestamp;
+   customerName: opt text;
+   customerPhone: opt text;
+   deliveryAddress: opt text;
+   dispatchNote: opt text;
+   driverInfo: opt DriverInfo;
+   findingDriverSince: opt int;
+   id: OrderId;
+   invoiceDate: opt text;
+   invoiceNo: opt text;
+   invoicePdfUrl: opt text;
+   invoiceStatus: InvoiceStatus;
+   isCod: bool;
+   items: vec OrderItem;
+   maCQT: opt text;
+   maTraCuu: opt text;
+   notes: opt text;
+   orderCode: opt text;
+   orderType: OrderType;
+   paidAt: opt Timestamp;
+   paymentConfirmedAt: opt Timestamp;
+   paymentMethod: opt PaymentMethod__1;
+   paymentMethodLabel: text;
+   paymentStatus: PaymentStatus;
+   restaurantId: RestaurantId;
+   shipperName: opt text;
+   shipperPhone: opt text;
+   shippingFee: opt nat;
+   shippingProvider: opt text;
+   shippingStatus: opt ShippingStatus;
+   shippingTransferStatus: ShippingTransferStatus;
+   status: OrderStatus;
+   stripePaymentIntentId: opt text;
+   subtotal: opt nat;
+   tableIdentifier: text;
+   vatInfo: opt VatInfo;
+ };
+type OrderItem__2 = 
+ record {
+   menuItemId: MenuItemId;
+   name: text;
+   price: nat;
+   quantity: nat;
+ };
+type OrderItem = 
+ record {
+   itemNote: opt text;
+   menuItemId: MenuItemId;
+   name: text;
+   price: nat;
+   quantity: nat;
+   unit: opt text;
+ };
+type OrderId = nat;
+type MenuItemId = nat;
+type MenuItem = 
+ record {
+   available: bool;
+   categoryId: MenuCategoryId;
+   description: text;
+   id: MenuItemId;
+   imageUrl: opt text;
+   name: text;
+   price: nat;
+   restaurantId: RestaurantId;
+   unit: opt text;
+ };
+type MenuCategoryId = nat;
+type MenuCategory = 
+ record {
+   id: MenuCategoryId;
+   name: text;
+   position: nat;
+   restaurantId: RestaurantId;
+ };
+type MasterMenuItem = 
+ record {
+   categoryId: nat;
+   description: text;
+   id: nat;
+   imageUrl: opt text;
+   isActive: bool;
+   name: text;
+   position: nat;
+   price: nat;
+   unit: opt text;
+ };
+type MasterMenuCategory = 
+ record {
+   id: nat;
+   name: text;
+   position: nat;
+ };
+type KioskBill = 
+ record {
+   amountPaid: nat;
+   changeDue: nat;
+   createdAt: text;
+   invoiceInfo: opt BkavInvoiceInfo;
+   itemCount: nat;
+   items: vec BillItem;
+   logoUrl: text;
+   orderCode: text;
+   paymentMethod: PaymentMethod;
+   restaurantAddr: text;
+   restaurantName: text;
+   restaurantPhone: text;
+   subtotal: nat;
+   tableName: opt text;
+   thankYouMsg: text;
+   total: nat;
+   vatAmount: nat;
+   vatRate: nat;
+   website: text;
+ };
+type InvoiceStatus = 
+ variant {
+   Error;
+   Issued;
+   NotRequested;
+   Pending;
+ };
+type HttpResponse = 
+ record {
+   body: blob;
+   headers: vec record {
+                  text;
+                  text;
+                };
+   status_code: nat16;
+   upgrade: opt bool;
+ };
+type HttpRequest = 
+ record {
+   body: blob;
+   headers: vec record {
+                  text;
+                  text;
+                };
+   method: text;
+   url: text;
+ };
+type EnterpriseStaffPermissions = 
+ record {
+   permissions: vec EnterprisePermission;
+   principalId: principal;
+ };
+type EnterprisePermission = 
+ variant {
+   Accounting;
+   CustomerSupport;
+   DeviceManagement;
+   EnterpriseDelivery;
+ };
+type EnterpriseDeviceRole = 
+ variant {
+   Accounting;
+   CustomerSupport;
+   EnterpriseDelivery;
+ };
+type EnterpriseDeviceRecord = 
+ record {
+   activationCode: opt text;
+   codeExpiry: opt int;
+   deviceId: text;
+   deviceName: text;
+   deviceToken: text;
+   registeredAt: int;
+   role: EnterpriseDeviceRole;
+   status: variant {
+             Active;
+             Revoked;
+           };
+ };
+type DynamicQRWorkerConfig = 
+ record {
+   bankBin: text;
+   clientId: text;
+   merchantId: text;
+   secretToken: text;
+   vaAccountNumber: text;
+   workerPrincipal: text;
+ };
+type DynamicQRStatusResult = 
+ record {
+   status: DynamicQRStatus;
+   totalAmountPaid: opt nat;
+   transactionInfos: opt text;
+ };
+type DynamicQRStatusCallback = 
+ record {
+   orderId: OrderId;
+   status: DynamicQRStatus;
+   totalAmountPaid: nat;
+   transactionInfos: vec TransactionInfo;
+ };
+type DynamicQRStatus = 
+ variant {
+   deleted;
+   expired;
+   paid;
+   pending;
+ };
+type DynamicQRRecordPublic = 
+ record {
+   billId: text;
+   createdAt: Timestamp;
+   expiresAt: opt Timestamp;
+   idempotencyKey: text;
+   orderId: OrderId;
+   qrId: text;
+   qrString: text;
+   status: DynamicQRStatus;
+   totalAmountPaid: nat;
+   transactionInfos: vec TransactionInfo;
+ };
+type DynamicQRGeneratedCallback = 
+ record {
+   billId: text;
+   idempotencyKey: text;
+   orderId: OrderId;
+   qrId: text;
+   qrString: text;
+ };
+type DynamicQRDeletedCallback = record {orderId: OrderId;};
+type DriverInfo = 
+ record {
+   eta: opt int;
+   lat: opt float64;
+   lng: opt float64;
+   name: text;
+   phone: text;
+   vehiclePlate: text;
+ };
+type DispatchCenterOrder = 
+ record {
+   createdAt: Timestamp;
+   deliveryAddress: text;
+   isCod: bool;
+   items: vec OrderItem__2;
+   notes: opt text;
+   orderCode: text;
+   orderId: OrderId;
+   recipientName: text;
+   recipientPhone: text;
+   restaurantId: RestaurantId;
+   restaurantName: text;
+   shippingFee: opt nat;
+   status: OrderStatus;
+   totalAmount: nat;
+ };
+type DeviceRecordPublic = 
+ record {
+   activationCode: text;
+   codeExpiry: int;
+   createdAt: int;
+   deviceId: DeviceId;
+   deviceName: text;
+   deviceToken: text;
+   lastUsedAt: int;
+   restaurantId: nat;
+   role: StaffRole;
+   status: variant {
+             active;
+             revoked;
+           };
+ };
+type DeviceId = text;
+type DeveloperProfile = 
+ record {
+   businessOwnerPrincipalId: principal;
+   developerPrincipalId: principal;
+   email: text;
+ };
+type CreateMasterMenuItemRequest = 
+ record {
+   categoryId: nat;
+   description: text;
+   imageUrl: opt text;
+   name: text;
+   position: nat;
+   price: nat;
+   unit: opt text;
+ };
+type CreateMasterCategoryRequest = 
+ record {
+   name: text;
+   position: nat;
+ };
+type CodSettings = 
+ record {
+   codLimit: nat;
+   isCodAllowed: bool;
+ };
+type CodOrderResponse = 
+ record {
+   message: text;
+   orderCode: text;
+   orderId: OrderId;
+   status: OrderStatus;
+   totalAmount: nat;
+ };
+type CodOrderRequest = 
+ record {
+   deliveryAddress: text;
+   deliveryLat: float64;
+   deliveryLng: float64;
+   items: vec OrderItem__2;
+   notes: opt text;
+   recipientName: text;
+   recipientPhone: text;
+   restaurantId: RestaurantId;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type BusinessProfileUpdate = 
+ record {
+   autoPaymentConfirmationApp: opt AutoPaymentApp;
+   autoPaymentConfirmationEnabled: opt bool;
+   autoShipperEnabled: opt bool;
+   bannerImageUrl: opt text;
+   brand1Name: opt text;
+   brand2Name: opt text;
+   brand3Name: opt text;
+   brand4Name: opt text;
+   brand5Name: opt text;
+   codSettings: opt opt CodSettings;
+   coordinateLatitude: opt float64;
+   coordinateLongitude: opt float64;
+   deliveryRadiusKm: opt nat;
+   deliveryServiceHours: opt text;
+   sepayApiToken: opt text;
+   sepayEnabled: opt bool;
+   shippingFeeMode: opt ShippingFeeMode;
+   stripeEnabled: opt bool;
+   stripePublishableKey: opt text;
+   stripeSecretKey: opt text;
+   tableServiceHours: opt text;
+ };
+type BusinessProfilePatch = 
+ record {
+   address: opt text;
+   brandLogo: opt text;
+   businessName: opt text;
+   domain: opt text;
+   email: opt text;
+   tingeeBankBin: opt text;
+   tingeeMerchantId: opt text;
+   tingeeVA: opt text;
+ };
+type BusinessBankDetails = 
+ record {
+   accountHolderName: text;
+   accountNumber: text;
+   bankName: text;
+ };
+type BkavInvoiceInfo = 
+ record {
+   cqtCode: text;
+   invoiceNo: text;
+   issueDate: text;
+   lookupCode: text;
+   totalAfterTax: nat;
+   vatAmount: nat;
+   vatRate: nat;
+ };
+type BillItem = 
+ record {
+   name: text;
+   price: nat;
+   quantity: nat;
+   total: nat;
+ };
+type BannerImagePublic = 
+ record {
+   id: nat;
+   imageUrl: text;
+   sortOrder: nat;
+ };
+type BankDetails = 
+ record {
+   accountHolderName: text;
+   accountNumber: text;
+   bankName: text;
+   totalAmount: nat;
+ };
+type BackgroundImage = 
+ record {
+   fileName: text;
+   id: nat;
+   isDefault: bool;
+   uploadedAt: int;
+   url: text;
+ };
+type AutoPaymentApp = 
+ variant {
+   None;
+   Sepay;
+   Tingee;
+ };
+type AnalyticsEntry = 
+ record {
+   date: text;
+   totalOrders: nat;
+   totalRevenue: nat;
+ };
+type AhamoveWorkerConfig = 
+ record {
+   apiKey: text;
+   isTestMode: bool;
+   mobile: text;
+   ordersToSync: vec record {
+                       ahamoveOrderId: text;
+                       orderId: text;
+                     };
+ };
+type AhamoveConfig = 
+ record {
+   apiKey: text;
+   isTestMode: bool;
+   mobile: opt text;
+ };
+service : {
+  activateDevice: (activationCode: text, intendedRole: opt StaffRole) ->
+   (variant {
+      err:
+       variant {
+         alreadyUsed;
+         deviceAlreadyHasRole;
+         expired;
+         internal: text;
+         notFound;
+         roleMismatch: text;
+       };
+      ok:
+       record {
+         deviceName: text;
+         deviceToken: text;
+         restaurantId: nat;
+         role: StaffRole;
+       };
+    });
+  activateEnterpriseDevice: (activationCode: text, intendedRole:
+   opt EnterpriseDeviceRole) ->
+   (variant {
+      err: text;
+      ok: record {
+            deviceId: text;
+            deviceToken: text;
+            role: text;
+          };
+    });
+  addBannerImage: (imageUrl: text) -> (opt nat);
+  addEnterpriseStaff: (principalId: principal) -> (variant {
+                                                     err: text;
+                                                     ok;
+                                                   });
+  addStaffMember: (restaurantId: RestaurantId, staffId: principal, role:
+   StaffRole) -> (bool);
+  assignCodDriver: (orderId: OrderId, driverPrincipal: principal) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  bookAhamoveShipper: (orderId: text) ->
+   (variant {
+      err: text;
+      ok:
+       record {
+         ahamoveOrderId: text;
+         distanceKm: float64;
+         fare: nat;
+         status: text;
+       };
+    });
+  bookDriverForCodOrder: (orderId: OrderId) ->
+   (variant {
+      err: text;
+      ok: record {
+            ahamoveOrderId: text;
+            fare: nat;
+            status: text;
+          };
+    });
+  bookShipper: (orderId: OrderId, restaurantId: RestaurantId) ->
+   (variant {
+      err: text;
+      ok: ShipperBookingResult;
+    });
+  cancelOrder: (orderId: OrderId) ->
+   (variant {
+      err: variant {
+             NotFound;
+             Unauthorized;
+             WrongStatus;
+           };
+      ok;
+    });
+  cancelReservation: (id: ReservationId) -> (bool);
+  checkCodAllowed: (orderTotal: nat) -> (bool) query;
+  checkFindingDriverTimeout: () -> (variant {
+                                      err: text;
+                                      ok: nat;
+                                    });
+  clearCompletedOrders: (restaurantId: RestaurantId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: nat;
+    });
+  confirmAhamoveBooking: (orderId: OrderId, ahamoveOrderId: text, fare: 
+   nat, status: text) ->
+   (variant {
+      err: text;
+      ok: record {
+            ahamoveOrderId: text;
+            fare: nat;
+            status: text;
+          };
+    });
+  confirmDynamicQRDeleted: (payload: DynamicQRDeletedCallback) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  confirmDynamicQRGenerated: (payload: DynamicQRGeneratedCallback) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  confirmDynamicQRStatus: (payload: DynamicQRStatusCallback) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  confirmPayment: (orderId: OrderId, paymentIntentId: text) ->
+   (variant {
+      err: variant {
+             NotFound;
+             Unauthorized;
+           };
+      ok: bool;
+    });
+  confirmPaymentByCashier: (orderId: OrderId, restaurantId: RestaurantId) ->
+   (variant {
+      err: variant {
+             NotFound;
+             Unauthorized;
+             WrongRestaurant;
+           };
+      ok: bool;
+    });
+  confirmPaymentByTingeeStatus: (orderId: OrderId, totalAmountPaid: nat,
+   transactionCode: opt text) ->
+   (variant {
+      err:
+       variant {
+         AlreadyPaid;
+         AmountMismatch;
+         NotFound;
+         NotTingeePending;
+         Unauthorized;
+       };
+      ok: bool;
+    });
+  confirmReservation: (id: ReservationId) -> (bool);
+  confirmTingeeBanks: (payload: TingeeBanksCallback) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  createCategory: (restaurantId: RestaurantId, name: text, position: 
+   nat) -> (MenuCategoryId);
+  createCodOrder: (request: CodOrderRequest) -> (CodOrderResponse);
+  createMasterCategory: (req: CreateMasterCategoryRequest) ->
+   (variant {
+      err: text;
+      ok: MasterMenuCategory;
+    });
+  createMasterMenuItem: (req: CreateMasterMenuItemRequest) ->
+   (variant {
+      err: text;
+      ok: MasterMenuItem;
+    });
+  createMenuItem: (restaurantId: RestaurantId, categoryId: MenuCategoryId,
+   name: text, description: text, price: nat, imageUrl: opt text, available:
+   bool, unit: opt text) -> (MenuItemId);
+  createPaymentIntent: (orderId: OrderId, method: PaymentMethod__1,
+   restaurantId: RestaurantId) ->
+   (variant {
+      err: variant {
+             NotFound;
+             StripeNotEnabled;
+             Unauthorized;
+           };
+      ok:
+       record {
+         bankDetails: opt BankDetails;
+         currency: text;
+         orderId: OrderId;
+         publishableKey: opt text;
+         totalAmount: nat;
+       };
+    });
+  createReservation: (restaurantId: RestaurantId, customerName: text,
+   customerPhone: text, partySize: nat, date: text, timeSlot: text,
+   durationMinutes: nat, tableId: opt TableId, notes: opt text,
+   customerEmail: opt text) -> (ReservationId);
+  createRestaurant: (name: text) -> (RestaurantId);
+  createTable: (restaurantId: RestaurantId, tableNumber: text) -> (TableId);
+  deleteBackgroundImage: (id: nat) -> (variant {
+                                         err: text;
+                                         ok;
+                                       });
+  deleteBannerImage: (id: nat) -> (bool);
+  deleteCategory: (restaurantId: RestaurantId, id: MenuCategoryId) -> (bool);
+  deleteDynamicQR: (orderId: text) -> (variant {
+                                         err: text;
+                                         ok;
+                                       });
+  deleteMasterCategory: (id: nat) -> (variant {
+                                        err: text;
+                                        ok;
+                                      });
+  deleteMasterMenuItem: (id: nat) -> (variant {
+                                        err: text;
+                                        ok;
+                                      });
+  deleteMenuItem: (restaurantId: RestaurantId, id: MenuItemId) -> (bool);
+  deleteRestaurant: (restaurantId: RestaurantId) -> (bool);
+  deleteTable: (restaurantId: RestaurantId, id: TableId) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  findNearestRestaurant: (lat: float64, lng: float64) -> (opt nat) query;
+  generateDynamicQR: (orderId: text, regenerateNonce: opt nat) ->
+   (variant {
+      err: text;
+      ok: DynamicQRRecordPublic;
+    });
+  generateInvoiceCallbackSecret: () -> (variant {
+                                          err: text;
+                                          ok: text;
+                                        });
+  getAhamoveConfig: () -> (opt AhamoveConfig) query;
+  getAhamoveOrderStatus: (orderId: OrderId) ->
+   (variant {
+      err: text;
+      ok:
+       record {
+         ahamoveOrderId: opt text;
+         driverInfo: opt DriverInfo;
+         orderStatus: OrderStatus;
+         shipperName: opt text;
+         shipperPhone: opt text;
+         shippingFee: opt nat;
+         shippingProvider: opt text;
+         shippingStatus: opt ShippingStatus;
+       };
+    });
+  getAhamoveWorkerConfig: () ->
+   (variant {
+      err: text;
+      ok: AhamoveWorkerConfig;
+    }) query;
+  getBannerImages: () -> (vec BannerImagePublic) query;
+  getBkavInvoiceConfig: () ->
+   (record {
+      demoGuid: opt text;
+      demoInvoiceSerial: text;
+      demoToken: opt text;
+      invoiceCallbackSecret: opt text;
+      invoiceForm: text;
+      invoiceSerial: text;
+      prodInvoiceSerial: text;
+      realApiUrl: opt text;
+      realGuid: opt text;
+      realToken: opt text;
+      useDemo: bool;
+      vatRate: nat;
+      workerPrincipal: opt text;
+    }) query;
+  getBusinessBankDetails: (deviceToken: opt text) ->
+   (opt BusinessBankDetails);
+  getBusinessLogoUrl: () -> (text) query;
+  getBusinessProfileInfo: () ->
+   (record {
+      address: opt text;
+      brandLogo: opt text;
+      businessName: opt text;
+      domain: opt text;
+      email: opt text;
+      tingeeBankBin: opt text;
+      tingeeMerchantId: opt text;
+      tingeeVA: opt text;
+    }) query;
+  getCodDispatchOrders: () ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec DispatchCenterOrder;
+    }) query;
+  getCodSettings: () -> (opt CodSettings) query;
+  /// Returns the current canister cycle balance.
+  getCycles: () -> (nat) query;
+  getDailyAnalytics: (restaurantId: RestaurantId, startDate: text, endDate:
+   text) -> (opt vec AnalyticsEntry) query;
+  getDeveloperProfile: () -> (opt DeveloperProfile);
+  getDispatchCenterOrders: () ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec DispatchCenterOrder;
+    }) query;
+  getDynamicQRStatus: (orderId: text) ->
+   (variant {
+      err: text;
+      ok: DynamicQRStatusResult;
+    });
+  getDynamicQRWorkerConfig: () -> (DynamicQRWorkerConfig) query;
+  getInvoiceCallbackSecret: (enterpriseId: text) -> (opt text);
+  getInvoiceInfo: (orderId: OrderId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok:
+       opt
+        record {
+          errorMessage: opt text;
+          invoiceDate: opt text;
+          invoiceNo: opt text;
+          invoiceStatus: text;
+          maCQT: opt text;
+        };
+    });
+  getInvoiceProvider: () -> (text) query;
+  getInvoiceWorkerConfig: () ->
+   (record {
+      bkavDemoEndpoint: text;
+      bkavProdEndpoint: text;
+      demoGuid: text;
+      demoInvoiceSerial: text;
+      demoToken: text;
+      invoiceCallbackSecret: text;
+      invoiceForm: text;
+      invoiceSerial: text;
+      partnerGUID: text;
+      partnerToken: text;
+      prodInvoiceSerial: text;
+      realGuid: text;
+      realToken: text;
+      useDemo: bool;
+      vatRate: float64;
+      workerPrincipal: text;
+    }) query;
+  getMenuItem: (id: MenuItemId) -> (opt MenuItem) query;
+  getMyEnterprisePermissions: () -> (vec EnterprisePermission);
+  getMyRestaurantFilter: () ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: opt vec RestaurantId;
+    });
+  getOrder: (id: OrderId) -> (opt OrderPublic);
+  getOrderForTracking: (orderId: OrderId) -> (opt OrderTrackingPublic) query;
+  getOrderPaymentStatus: (orderId: OrderId) ->
+   (opt
+     record {
+       paymentConfirmedAt: opt Timestamp;
+       paymentStatus: PaymentStatus;
+     });
+  getPaymentStatus: (orderId: OrderId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: opt PaymentStatus;
+    });
+  getPendingAhamoveBookings: () -> (vec PendingAhamoveBookingItem) query;
+  getPendingCodPayments: () ->
+   (opt vec record {
+              orderCode: text;
+              orderTotal: nat;
+              shippingFee: nat;
+            }) query;
+  getPendingDynamicQRs: () -> (vec PendingDynamicQRItem) query;
+  getPendingInvoices: () -> (vec PendingInvoiceItem) query;
+  getPublicDeveloperProfile: (developerPrincipalId: principal) ->
+   (opt DeveloperProfile) query;
+  getRestaurant: (id: RestaurantId) -> (opt RestaurantPublic) query;
+  getRestaurantOverrides: (restaurantId: nat) -> (vec nat) query;
+  getRestaurantStripePublishableKey: (restaurantId: RestaurantId) ->
+   (opt text) query;
+  getRetryPolicy: () -> (RetryPolicy) query;
+  getSavedRecipientInfo: () -> (opt SavedRecipientInfo);
+  /// Returns the current schema version of the canister's data model.
+  getSchemaVersion: () -> (nat) query;
+  getSellerInfo: () -> (record {
+                          phone: opt text;
+                          taxCode: opt text;
+                        }) query;
+  getStaffRole: (restaurantId: RestaurantId, staffId: principal) ->
+   (opt StaffRole) query;
+  getSuggestionConfig: () -> (SuggestionConfig) query;
+  getTable: (id: TableId) -> (opt Table) query;
+  getTingeeBanks: () -> (variant {
+                           err: text;
+                           ok: vec TingeeBank;
+                         });
+  getTingeeConfig: () ->
+   (opt record {
+          clientId: text;
+          orderPrefix: text;
+          secretToken: text;
+        }) query;
+  getTingeeConfigForDevice: (token: text) ->
+   (opt record {
+          clientId: text;
+          orderPrefix: text;
+          secretToken: text;
+        });
+  getWebhookEndpointInfo: () -> (text);
+  getWeeklyAnalytics: (restaurantId: RestaurantId, startWeek: text, endWeek:
+   text) -> (opt vec WeeklyAnalyticsEntry) query;
+  getWorkerStatus: () -> (WorkerStatusResponse) query;
+  grantEnterprisePermission: (principalId: principal, permission:
+   EnterprisePermission) -> (variant {
+                               err: text;
+                               ok;
+                             });
+  handleInvoiceCallback: (body: blob, headers: vec record {
+                                                     text;
+                                                     text;
+                                                   }) ->
+   (record {
+      body: blob;
+      status: nat16;
+    });
+  hasEnterprisePermission: (principalId: principal, permission:
+   EnterprisePermission) -> (bool);
+  hasInvoiceCallbackSecret: () -> (bool) query;
+  hasTingeeClientIdConfigured: () -> (bool) query;
+  hasTingeeConfigured: () -> (bool) query;
+  hasTingeeSecretToken: (restaurantId: RestaurantId) -> (bool) query;
+  hasTingeeSecretTokenConfigured: () -> (bool) query;
+  http_request: (req: HttpRequest) -> (HttpResponse) query;
+  http_request_update: (req: HttpRequest) -> (HttpResponse);
+  isEnterpriseDeliveryStaff: () -> (bool);
+  listActiveOrdersByRestaurant: (restaurantId: RestaurantId, dateFilter:
+   opt text) -> (variant {
+                   err: variant {Unauthorized;};
+                   ok: vec OrderPublic;
+                 });
+  listAllOrdersForAccounting: (restaurantId: RestaurantId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec OrderPublic;
+    });
+  listAllRestaurants: () -> (vec RestaurantPublic) query;
+  listBackgroundImages: () -> (vec BackgroundImage) query;
+  listCategories: (restaurantId: RestaurantId) -> (vec MenuCategory) query;
+  listDeliveryOrders: (restaurantId: RestaurantId, dateFilter: opt text) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec OrderPublic;
+    });
+  listDeliveryOrdersEnterprise: (dateFilter: opt text) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec OrderPublic;
+    });
+  listDeliveryOrdersForKitchen: (restaurantId: RestaurantId, dateFilter:
+   opt text) -> (variant {
+                   err: variant {Unauthorized;};
+                   ok: vec OrderPublic;
+                 });
+  listDevices: (restaurantId: nat) ->
+   (variant {
+      err: text;
+      ok: vec DeviceRecordPublic;
+    });
+  listEnterpriseDevices: () ->
+   (variant {
+      err: text;
+      ok: vec EnterpriseDeviceRecord;
+    });
+  listEnterpriseStaff: () ->
+   (variant {
+      err: text;
+      ok: vec EnterpriseStaffPermissions;
+    });
+  listMasterCategories: () -> (vec MasterMenuCategory) query;
+  listMasterMenuItems: () -> (vec MasterMenuItem) query;
+  listMenuItems: (restaurantId: RestaurantId) -> (vec MenuItem) query;
+  listMenuItemsByCategory: (restaurantId: RestaurantId, categoryId:
+   MenuCategoryId) -> (vec MenuItem) query;
+  listMyRestaurants: () -> (vec RestaurantPublic) query;
+  listOrdersByRestaurant: (restaurantId: RestaurantId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec OrderPublic;
+    });
+  listOrdersByStatus: (restaurantId: RestaurantId, status: OrderStatus) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec OrderPublic;
+    });
+  listOrdersByTable: (restaurantId: RestaurantId, tableIdentifier: text) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: vec OrderPublic;
+    });
+  listReservationsByRestaurant: (restaurantId: RestaurantId) ->
+   (vec ReservationPublic) query;
+  listRestaurantsNearby: (latitude: float64, longitude: float64) ->
+   (vec RestaurantId) query;
+  listTables: (restaurantId: RestaurantId) -> (vec Table) query;
+  markTingeeExpired: (orderId: OrderId) ->
+   (variant {
+      err: variant {
+             NotFound;
+             Unauthorized;
+           };
+      ok: bool;
+    });
+  placeDeliveryOrder: (restaurantId: RestaurantId, items: vec OrderItem,
+   notes: opt text, deliveryAddress: text, customerName: text, customerPhone:
+   text, vatRequest: bool, vatInfo: opt VatInfo, shippingFee: opt nat,
+   deliveryLat: opt float64, deliveryLng: opt float64, isCod: bool) ->
+   (variant {
+      err: text;
+      ok: record {
+            orderCode: opt text;
+            orderId: OrderId;
+          };
+    });
+  placeOrder: (restaurantId: RestaurantId, tableIdentifier: text, items:
+   vec OrderItem, notes: opt text, vatRequest: bool, vatInfo: opt VatInfo) ->
+   (record {
+      orderCode: opt text;
+      orderId: OrderId;
+    });
+  postWorkerHeartbeat: (workerId: text) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  printKioskBill: (orderId: OrderId) -> (opt KioskBill);
+  receiveAhamoveWebhook: (orderId: text, newStatus: text, driverInfo:
+   opt DriverInfo, signature: text, requestBody: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  /// Returns the current schema version of the canister's data model.
+  receiveTingeeWebhook: (body: blob, headers: vec record {
+                                                    text;
+                                                    text;
+                                                  }) -> (text);
+  registerDevice: (restaurantId: nat, role: StaffRole, deviceName: text) ->
+   (variant {
+      err: text;
+      ok: record {
+            activationCode: text;
+            deviceId: text;
+          };
+    });
+  registerEnterpriseDevice: (role: EnterpriseDeviceRole, deviceName: 
+   text) ->
+   (variant {
+      err: text;
+      ok: record {
+            activationCode: text;
+            deviceId: text;
+          };
+    });
+  reissueBkavInvoice: (orderId: OrderId) -> (text);
+  removeEnterpriseStaff: (principalId: principal) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  removeStaffMember: (restaurantId: RestaurantId, staffId: principal) ->
+   (bool);
+  retryBookShipper: (orderId: text) ->
+   (variant {
+      err: text;
+      ok: record {
+            ahamoveOrderId: text;
+            distanceKm: float64;
+            fare: nat;
+          };
+    });
+  revokeDevice: (deviceId: text) -> (variant {
+                                       err: text;
+                                       ok;
+                                     });
+  revokeEnterpriseDevice: (deviceId: text) -> (variant {
+                                                 err: text;
+                                                 ok;
+                                               });
+  revokeEnterprisePermission: (principalId: principal, permission:
+   EnterprisePermission) -> (variant {
+                               err: text;
+                               ok;
+                             });
+  saveAhamoveConfig: (config: AhamoveConfig) -> (variant {
+                                                   err: text;
+                                                   ok;
+                                                 });
+  saveBkavCommonConfig: (demoSerial: opt text, prodSerial: opt text, form:
+   opt text, useDemo: bool, vatRate: nat, workerPrincipal: opt text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  saveInvoiceProvider: (provider: text) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  saveMyRestaurantFilter: (restaurantIds: vec RestaurantId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok;
+    });
+  saveRealBkavConfig: (guid: text, token: text, apiUrl: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  saveRecipientInfo: (recipientName: text, recipientPhone: text,
+   locationName: text) -> ();
+  saveSellerInfo: (taxCode: text, phone: text) -> (variant {
+                                                     err: text;
+                                                     ok;
+                                                   });
+  saveTingeeClientId: (clientId: text) -> (variant {
+                                             err: text;
+                                             ok;
+                                           });
+  saveTingeeConfig: (clientId: text, secretToken: text, orderPrefix: 
+   text) -> ();
+  saveTingeeSecretToken: (token: text) -> (variant {
+                                             err: text;
+                                             ok;
+                                           });
+  schema: () -> (text) query;
+  setCodSettings: (settings: opt CodSettings) -> (variant {
+                                                    err: text;
+                                                    ok;
+                                                  });
+  setMasterMenuItemActive: (id: nat, isActive: bool) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setMenuItemAvailability: (restaurantId: RestaurantId, id: MenuItemId,
+   available: bool) -> (bool);
+  setRestaurantItemOverride: (restaurantId: nat, masterItemId: nat,
+   isAvailable: bool) -> ();
+  setRetryPolicy: (maxRetries: nat, baseDelayMs: nat, maxDelayMs: nat,
+   backoffMultiplier: float64) -> (variant {
+                                     err: text;
+                                     ok;
+                                   });
+  setSuggestionConfig: (config: SuggestionConfig) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  settleTable: (restaurantId: RestaurantId, tableIdentifier: text) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: nat;
+    });
+  updateAutoPaymentConfirmationSettings: (restaurantId: RestaurantId,
+   enabled: bool, app: AutoPaymentApp) -> (bool);
+  updateBannerImage: (id: nat, imageUrl: text, sortOrder: nat) -> (bool);
+  updateBusinessBankDetails: (accountNumber: text, bankName: text,
+   accountHolderName: text) -> (variant {
+                                  err: text;
+                                  ok;
+                                });
+  updateBusinessLogoUrl: (url: text) -> (bool);
+  updateBusinessProfile: (patch: BusinessProfilePatch) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  updateCategory: (restaurantId: RestaurantId, id: MenuCategoryId, name:
+   text, position: nat) -> (bool);
+  updateMasterCategory: (id: nat, req: UpdateMasterCategoryRequest) ->
+   (variant {
+      err: text;
+      ok: MasterMenuCategory;
+    });
+  updateMasterMenuItem: (id: nat, req: UpdateMasterMenuItemRequest) ->
+   (variant {
+      err: text;
+      ok: MasterMenuItem;
+    });
+  updateMenuItem: (restaurantId: RestaurantId, id: MenuItemId, name: 
+   text, description: text, price: nat, imageUrl: opt text, available: 
+   bool, unit: opt text) -> (bool);
+  updateOrderStatus: (id: OrderId, newStatus: OrderStatus) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: bool;
+    });
+  updateReservationStatus: (id: ReservationId, newStatus:
+   ReservationStatus) -> (bool);
+  updateRestaurantLocation: (restaurantId: RestaurantId, update:
+   RestaurantLocationUpdate) -> (bool);
+  updateRestaurantName: (restaurantId: RestaurantId, name: text) -> (bool);
+  updateRestaurantProfile: (restaurantId: RestaurantId, update:
+   BusinessProfileUpdate) -> (bool);
+  updateRestaurantStripeKeys: (restaurantId: RestaurantId, publishableKey:
+   text, secretKey: text) -> (bool);
+  updateShipperStatus: (orderId: OrderId, shipperName: text, shipperPhone:
+   text, shippingStatus: ShippingStatus) -> (variant {
+                                               err: text;
+                                               ok;
+                                             });
+  updateShippingTransferStatus: (orderId: text, status:
+   ShippingTransferStatus) -> (variant {
+                                 err: text;
+                                 ok;
+                               });
+  updateTable: (restaurantId: RestaurantId, id: TableId, tableNumber:
+   text) -> (bool);
+  uploadBackgroundImage: (url: text, fileName: text) ->
+   (variant {
+      err: text;
+      ok: BackgroundImage;
+    });
+  upsertDeveloperProfile: (businessOwnerPrincipalId: principal, email:
+   text) -> (DeveloperProfile);
+  verifyDeviceToken: (deviceToken: text) ->
+   (variant {
+      err: text;
+      ok: record {
+            deviceName: text;
+            restaurantId: nat;
+            role: StaffRole;
+          };
+    });
+  verifyEnterpriseDeviceToken: (deviceToken: text) ->
+   (opt EnterpriseDeviceRole);
+  verifyOrderForBooking: (orderId: OrderId) ->
+   (variant {
+      err: variant {Unauthorized;};
+      ok: record {
+            restaurantId: opt text;
+            status: text;
+            valid: bool;
+          };
+    }) query;
+}

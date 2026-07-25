@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preload" href="/assets/fonts/DMSans.woff2" as="font" crossorigin="anonymous" type="font/woff2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bún Bò Huế 65 - Đặt món giao hàng tận nơi | Bunbohue65.vn</title>
+    <meta name="description" content="Bún Bò Huế 65 - Hương vị Huế truyền thống tại Hà Nội. Đặt món online Bunbohue65.vn, giao hàng tận nơi. Xem menu bún bò Huế 65, đặt hàng ngay!" />
+    <meta property="og:title" content="Bún Bò Huế 65 — Đặt món online, giao hàng tận nơi | Bunbohue65.vn" />
+    <meta property="og:description" content="Bún Bò Huế 65 — Hương vị Huế truyền thống, đặt món online, giao hàng tận nơi. Đặt ngay!" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="shortcut icon" href="/assets/logo-bunbohue65.png" type="image/png" />
+  <script>
+    (function () {
+      try {
+        var pathname = window.location.pathname.replace(/\/$/, '');
+        var roleMap = {
+          '/cashier-view': 'cashier',
+          '/kitchen-view': 'kitchen',
+          '/waiter-view': 'waiter',
+          '/delivery-view': 'delivery'
+        };
+        var role = roleMap[pathname];
+        if (role) {
+          var params = new URLSearchParams(window.location.search);
+          var token = params.get('token');
+          var restaurantId = params.get('restaurantId');
+          if (token && restaurantId) {
+            localStorage.setItem('staffToken_' + role, token);
+            localStorage.setItem('staffToken_' + role + '_' + restaurantId, token);
+            localStorage.setItem('restaurantId_' + role, restaurantId);
+          }
+        }
+      } catch (e) { /* ignore storage errors */ }
+    })();
+  </script>
+    <meta name="keywords" content="bún bò huế 65, bunbohue65, bunbohue65.vn, Ẩm thực Huế tại Hà nội, Bún bò Huế 65 giao hàng, Bún bò Huế 65 menu, đặt bún bò huế, giao bún bò huế, order bun bo hue, bún bò huế giao hàng, bún bò huế online" />
+<meta property="og:url" content="https://www.bunbohue65.vn/" />
+<meta property="og:image" content="https://www.bunbohue65.vn/assets/logo-bunbohue65.png" />
+<meta property="og:site_name" content="Bún Bò Huế 65" />
+<meta property="og:locale" content="vi_VN" />
+<meta name="twitter:title" content="Bún Bò Huế 65 - Đặt Món Giao Hàng Tận Nơi | Bunbohue65.vn" />
+<meta name="twitter:description" content="Bún Bò Huế 65 - Hương vị Huế truyền thống tại Hà Nội. Đặt món online Bunbohue65.vn, giao hàng tận nơi. Xem menu bún bò Huế 65!" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Bún Bò Huế 65" />
+<link rel="alternate" href="https://www.bunbohue65.vn/" hreflang="x-default" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Công ty TNHH Thực Phẩm Gia Khánh - Gia Khánh Foods",
+    "alternateName": "Bún Bò Huế 65",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "69, Láng",
+      "addressLocality": "Đống Đa",
+      "addressRegion": "Hà Nội",
+      "addressCountry": "VN"
+    },
+    "taxID": "0111063397",
+    "telephone": "0914658365",
+    "url": "https://www.bunbohue65.vn"
+  }
+  </script>
+<meta name="google-site-verification" content="bunbohue65-gsc-verification" />
+<link rel="alternate" href="https://www.bunbohue65.vn/delivery" hreflang="x-default" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link rel="dns-prefetch" href="https://www.bunbohue65.vn" />
+<meta name="twitter:image" content="https://www.bunbohue65.vn/assets/logo-bunbohue65.png" />
+
+  <script type="module" crossorigin src="/assets/index-tnqvfpj1.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-2SsoEhI-.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p>Trang web này yêu cầu JavaScript. Vui lòng bật JavaScript hoặc truy cập <a href="/delivery">trang đặt món</a> trực tiếp.</p>
+    </noscript>
+  </body>
+</html>

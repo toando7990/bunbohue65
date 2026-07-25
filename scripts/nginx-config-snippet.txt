@@ -1,0 +1,142 @@
+# =============================================================================
+# nginx-config-snippet.txt
+# Cau hinh nginx cho AhaMove Worker (port 3002)
+# File nginx tren VPS: /etc/nginx/sites-enabled/bunbohue65-proxy
+# =============================================================================
+#
+# CACH 1 -- Dung include file (khuyen nghi)
+# -----------------------------------------
+# Buoc 1: Tao file snippet tren VPS:
+#
+#   nano /etc/nginx/snippets/ahamove-worker.conf
+#
+# Dan noi dung location block sau vao file (xem CACH 2 phia duoi).
+#
+# Buoc 2: Them dong include vao server block trong bunbohue65-proxy
+# (truoc dau dong } cuoi cung cua server block):
+#
+#   include /etc/nginx/snippets/ahamove-worker.conf;
+#
+# Buoc 3: Test va reload nginx:
+#
+#   nginx -t && systemctl reload nginx
+#
+# =============================================================================
+#
+# CACH 2 -- Them truc tiep vao server block
+# ------------------------------------------
+# Mo file nginx:
+#
+#   nano /etc/nginx/sites-enabled/bunbohue65-proxy
+#
+# Tim server block dang co, them doan sau vao BEN TRONG server block,
+# truoc dau } dong cuoi cung:
+# ============================================================================
+
+    # AhaMove Worker -- health check (port 3002)
+    location /ahamove-health {
+        proxy_pass         http://127.0.0.1:3002/;
+        proxy_http_version 1.1;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout 5s;
+        proxy_connect_timeout 5s;
+    }
+
+    # AhaMove Worker -- estimate endpoint (frontend calls directly, needs CORS)
+    location /ahamove-estimate-public {
+        # CORS headers for frontend direct calls
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' 'https://www.bunbohue65.vn' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+            add_header 'Access-Control-Max-Age' 1728000 always;
+            add_header 'Content-Type' 'text/plain; charset=utf-8' always;
+            add_header 'Content-Length' 0 always;
+            return 204;
+        }
+
+        add_header 'Access-Control-Allow-Origin' 'https://www.bunbohue65.vn' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+        add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+
+        proxy_pass         http://127.0.0.1:3002/ahamove-estimate-public;
+        proxy_http_version 1.1;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout 30s;
+        proxy_connect_timeout 10s;
+    }
+
+    # AhaMove Worker -- book endpoint (IC canister calls AND frontend direct calls, needs CORS)
+    location /ahamove-book {
+        # CORS headers for frontend direct calls
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' 'https://www.bunbohue65.vn' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+            add_header 'Access-Control-Max-Age' 1728000 always;
+            add_header 'Content-Type' 'text/plain; charset=utf-8' always;
+            add_header 'Content-Length' 0 always;
+            return 204;
+        }
+
+        add_header 'Access-Control-Allow-Origin' 'https://www.bunbohue65.vn' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+        add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+
+        proxy_pass         http://127.0.0.1:3002/ahamove-book;
+        proxy_http_version 1.1;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout 30s;
+        proxy_connect_timeout 10s;
+    }
+
+    # AhaMove Worker -- webhook endpoint (AhaMove calls, no CORS needed)
+    location /ahamove-webhook {
+        proxy_pass         http://127.0.0.1:3002/ahamove-webhook;
+        proxy_http_version 1.1;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout 10s;
+        proxy_connect_timeout 5s;
+    }
+
+# =============================================================================
+# SAU KHI THEM -- Kiem tra va reload:
+#
+#   nginx -t
+#   systemctl reload nginx
+#
+# KIEM TRA ket noi tu VPS:
+#
+#   curl http://127.0.0.1:3002/
+#   curl https://proxy.bunbohue65.vn/ahamove-health
+#
+# KET QUA MONG MUON:
+#   HTTP 200  body: ahamove-worker OK
+#
+# =============================================================================
+# SO SANH VOI CAC WORKER KHAC (tham khao):
+#
+# bkav-worker (port 3000):
+#   location /bkav-health {
+#       proxy_pass http://127.0.0.1:3000/;
+#   }
+#
+# ahamove-worker (port 3002) -- MOI:
+#   location /ahamove-health {
+#       proxy_pass http://127.0.0.1:3002/;
+#   }
+# =============================================================================

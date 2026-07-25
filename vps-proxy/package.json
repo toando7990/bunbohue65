@@ -1,0 +1,22 @@
+{
+  "name": "vps-proxy",
+  "version": "1.0.0",
+  "description": "VPS proxy server + Tingee/Ahamove workers for TableOrder IC canister",
+  "main": "vps-proxy-server.js",
+  "type": "module",
+  "scripts": {
+    "start:proxy": "node ../vps-proxy-server.js",
+    "start:tingee": "node tingee-worker.js",
+    "start:ahamove": "node ahamove-worker.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^2.1.3",
+    "@dfinity/candid": "^2.1.3",
+    "@dfinity/identity": "^2.1.3",
+    "@dfinity/principal": "^2.1.3",
+    "express": "^4.19.2"
+  }
+}

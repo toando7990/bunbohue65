@@ -1,0 +1,1293 @@
+// Version: 4.0.0
+type AutoPaymentApp__31538113 = {#None; #Sepay; #Tingee};
+type AutoPaymentApp__772762555 = {#None; #Sepay; #Tingee};
+type AutoPaymentApp__807601766 = {#None; #Sepay; #Tingee};
+type BackgroundImage__106943710 =
+  {fileName : Text; id : Nat; isDefault : Bool; uploadedAt : Int; url : Text};
+type BackgroundImage__392013817 =
+  {fileName : Text; id : Nat; isDefault : Bool; uploadedAt : Int; url : Text};
+type BackgroundImage__974408625 =
+  {fileName : Text; id : Nat; isDefault : Bool; uploadedAt : Int; url : Text};
+type BannerImage__137577994 =
+  {id : Nat; var imageUrl : Text; var sortOrder : Nat};
+type BannerImage__678158372 =
+  {id : Nat; var imageUrl : Text; var sortOrder : Nat};
+type BannerImage__717661576 = BannerImage__678158372;
+type BannerImage__885370726 =
+  {id : Nat; var imageUrl : Text; var sortOrder : Nat};
+type BpState__397639325 =
+  {
+    bannerCounter : {var nextId : Nat};
+    bannerImages : List__852723865<BannerImage__885370726>;
+    profile : BusinessProfile__158240956;
+    savedRecipients :
+      Map__246123559<Principal, SavedRecipientInfo__909933635>
+  };
+type BpState__86133685 =
+  {
+    bannerCounter : {var nextId : Nat};
+    bannerImages : List__852723865<BannerImage__137577994>;
+    profile : BusinessProfile__633097764;
+    savedRecipients :
+      Map__246123559<Principal, SavedRecipientInfo__166026995>
+  };
+type BusinessProfile__158240956 =
+  {
+    var accountHolderName : ?Text;
+    var accountNumber : ?Text;
+    var address : ?Text;
+    var ahamoveApiKey : ?Text;
+    var ahamoveMobile : ?Text;
+    var bankName : ?Text;
+    var bkavDemoInvoiceSerial : ?Text;
+    var bkavEnvironment : Text;
+    var bkavInvoiceForm : ?Text;
+    var bkavInvoiceSerial : ?Text;
+    var bkavProdInvoiceSerial : ?Text;
+    var bkavVatRate : Nat;
+    var brandLogo : ?Text;
+    var businessName : ?Text;
+    var codSettings : ?CodSettings__1073116735;
+    var demoGuid : ?Text;
+    var demoToken : ?Text;
+    var domain : ?Text;
+    var email : ?Text;
+    var invoiceCallbackSecret : ?Text;
+    var invoiceProvider : Text;
+    var logoUrl : Text;
+    var phone : ?Text;
+    var realApiUrl : ?Text;
+    var realGuid : ?Text;
+    var realToken : ?Text;
+    var taxCode : ?Text;
+    var tingeeBankBin : ?Text;
+    var tingeeClientId : ?Text;
+    var tingeeMerchantId : ?Text;
+    var tingeeOrderPrefix : Text;
+    var tingeeSecretToken : ?Text;
+    var tingeeVA : ?Text;
+    var workerPrincipal : ?Text
+  };
+type BusinessProfile__44907836 =
+  {
+    var accountHolderName : ?Text;
+    var accountNumber : ?Text;
+    var address : ?Text;
+    var ahamoveApiKey : ?Text;
+    var ahamoveMobile : ?Text;
+    var bankName : ?Text;
+    var bkavDemoInvoiceSerial : ?Text;
+    var bkavEnvironment : Text;
+    var bkavInvoiceForm : ?Text;
+    var bkavInvoiceSerial : ?Text;
+    var bkavProdInvoiceSerial : ?Text;
+    var bkavVatRate : Nat;
+    var brandLogo : ?Text;
+    var businessName : ?Text;
+    var codSettings : ?CodSettings__686663872;
+    var demoGuid : ?Text;
+    var demoToken : ?Text;
+    var domain : ?Text;
+    var email : ?Text;
+    var invoiceCallbackSecret : ?Text;
+    var invoiceProvider : Text;
+    var logoUrl : Text;
+    var phone : ?Text;
+    var realApiUrl : ?Text;
+    var realGuid : ?Text;
+    var realToken : ?Text;
+    var taxCode : ?Text;
+    var tingeeBankBin : ?Text;
+    var tingeeClientId : ?Text;
+    var tingeeMerchantId : ?Text;
+    var tingeeOrderPrefix : Text;
+    var tingeeSecretToken : ?Text;
+    var tingeeVA : ?Text;
+    var workerPrincipal : ?Text
+  };
+type BusinessProfile__553200108 = BusinessProfile__44907836;
+type BusinessProfile__633097764 =
+  {
+    var accountHolderName : ?Text;
+    var accountNumber : ?Text;
+    var address : ?Text;
+    var ahamoveApiKey : ?Text;
+    var ahamoveMobile : ?Text;
+    var bankName : ?Text;
+    var bkavDemoInvoiceSerial : ?Text;
+    var bkavEnvironment : Text;
+    var bkavInvoiceForm : ?Text;
+    var bkavInvoiceSerial : ?Text;
+    var bkavProdInvoiceSerial : ?Text;
+    var bkavVatRate : Nat;
+    var brandLogo : ?Text;
+    var businessName : ?Text;
+    var codSettings : ?CodSettings__1017123066;
+    var demoGuid : ?Text;
+    var demoToken : ?Text;
+    var domain : ?Text;
+    var email : ?Text;
+    var invoiceCallbackSecret : ?Text;
+    var invoiceProvider : Text;
+    var logoUrl : Text;
+    var phone : ?Text;
+    var realApiUrl : ?Text;
+    var realGuid : ?Text;
+    var realToken : ?Text;
+    var taxCode : ?Text;
+    var tingeeBankBin : ?Text;
+    var tingeeClientId : ?Text;
+    var tingeeMerchantId : ?Text;
+    var tingeeOrderPrefix : Text;
+    var tingeeSecretToken : ?Text;
+    var tingeeVA : ?Text;
+    var workerPrincipal : ?Text
+  };
+type CodSettings__1017123066 = {codLimit : Nat; isCodAllowed : Bool};
+type CodSettings__1073116735 = {codLimit : Nat; isCodAllowed : Bool};
+type CodSettings__686663872 = {codLimit : Nat; isCodAllowed : Bool};
+type Data__552063367<K, V> = {var count : Nat__93962160; kvs : [var ?(K, V)]};
+type DeveloperProfile__255081462 =
+  {
+    businessOwnerPrincipalId : Principal;
+    developerPrincipalId : Principal;
+    email : Text
+  };
+type DeveloperProfile__527247777 =
+  {
+    businessOwnerPrincipalId : Principal;
+    developerPrincipalId : Principal;
+    email : Text
+  };
+type DeveloperProfile__917838688 =
+  {
+    businessOwnerPrincipalId : Principal;
+    developerPrincipalId : Principal;
+    email : Text
+  };
+type DeviceId__795919761 = Text;
+type DeviceRecord__263655629 =
+  {
+    activationCode : Text;
+    codeExpiry : Int;
+    createdAt : Int;
+    deviceId : Text;
+    deviceName : Text;
+    deviceToken : Text;
+    var lastUsedAt : Int;
+    restaurantId : Nat;
+    role : StaffRole__903270527;
+    status : {#active; #revoked}
+  };
+type DeviceRecord__563165162 =
+  {
+    activationCode : Text;
+    codeExpiry : Int;
+    createdAt : Int;
+    deviceId : Text;
+    deviceName : Text;
+    deviceToken : Text;
+    var lastUsedAt : Int;
+    restaurantId : Nat;
+    role : StaffRole__74846767;
+    status : {#active; #revoked}
+  };
+type DeviceRecord__938841636 =
+  {
+    activationCode : Text;
+    codeExpiry : Int;
+    createdAt : Int;
+    deviceId : DeviceId__795919761;
+    deviceName : Text;
+    deviceToken : Text;
+    var lastUsedAt : Int;
+    restaurantId : Nat;
+    role : StaffRole__334678748;
+    status : {#active; #revoked}
+  };
+type DriverDispatchMode__179970566 = {#Central; #InStore};
+type DriverDispatchMode__868499028 = {#Central; #InStore};
+type DriverDispatchMode__879624917 = {#Central; #InStore};
+type DriverInfo__402500722 =
+  {
+    eta : ?Int;
+    lat : ?Float;
+    lng : ?Float;
+    name : Text;
+    phone : Text;
+    vehiclePlate : Text
+  };
+type DriverInfo__764634535 =
+  {
+    eta : ?Int;
+    lat : ?Float;
+    lng : ?Float;
+    name : Text;
+    phone : Text;
+    vehiclePlate : Text
+  };
+type DriverInfo__969074321 =
+  {
+    eta : ?Int;
+    lat : ?Float;
+    lng : ?Float;
+    name : Text;
+    phone : Text;
+    vehiclePlate : Text
+  };
+type DynamicQRRecord__158954285 =
+  {
+    billId : Text;
+    createdAt : Int;
+    expiresAt : ?Int;
+    idempotencyKey : Text;
+    orderId : Nat;
+    qrId : Text;
+    qrString : Text;
+    var status : DynamicQRStatus__799600775;
+    var totalAmountPaid : Nat;
+    var transactionInfos : [TransactionInfo__78177996]
+  };
+type DynamicQRRecord__353241018 =
+  {
+    billId : Text;
+    createdAt : Int;
+    expiresAt : ?Int;
+    idempotencyKey : Text;
+    orderId : Nat;
+    qrId : Text;
+    qrString : Text;
+    var status : DynamicQRStatus__216027956;
+    var totalAmountPaid : Nat;
+    var transactionInfos : [TransactionInfo__813869238]
+  };
+type DynamicQRRecord__54307708 = DynamicQRRecord__749318111;
+type DynamicQRRecord__749318111 =
+  {
+    billId : Text;
+    createdAt : Timestamp__301639476;
+    expiresAt : ?Timestamp__301639476;
+    idempotencyKey : Text;
+    orderId : OrderId__197865225;
+    qrId : Text;
+    qrString : Text;
+    var status : DynamicQRStatus__636778291;
+    var totalAmountPaid : Nat;
+    var transactionInfos : [TransactionInfo__590320815]
+  };
+type DynamicQRStatus__216027956 = {#deleted; #expired; #paid; #pending};
+type DynamicQRStatus__636778291 = {#deleted; #expired; #paid; #pending};
+type DynamicQRStatus__799600775 = {#deleted; #expired; #paid; #pending};
+type EnterpriseDeviceRecord__1065887081 =
+  {
+    activationCode : ?Text;
+    codeExpiry : ?Int;
+    deviceId : Text;
+    deviceName : Text;
+    deviceToken : Text;
+    registeredAt : Int;
+    role : EnterpriseDeviceRole__637500314;
+    status : {#Active; #Revoked}
+  };
+type EnterpriseDeviceRecord__3389093 =
+  {
+    activationCode : ?Text;
+    codeExpiry : ?Int;
+    deviceId : Text;
+    deviceName : Text;
+    deviceToken : Text;
+    registeredAt : Int;
+    role : EnterpriseDeviceRole__473317331;
+    status : {#Active; #Revoked}
+  };
+type EnterpriseDeviceRecord__696085087 =
+  {
+    activationCode : ?Text;
+    codeExpiry : ?Int;
+    deviceId : Text;
+    deviceName : Text;
+    deviceToken : Text;
+    registeredAt : Int;
+    role : EnterpriseDeviceRole__141687343;
+    status : {#Active; #Revoked}
+  };
+type EnterpriseDeviceRole__141687343 =
+  {#Accounting; #CustomerSupport; #EnterpriseDelivery};
+type EnterpriseDeviceRole__473317331 =
+  {#Accounting; #CustomerSupport; #EnterpriseDelivery};
+type EnterpriseDeviceRole__637500314 =
+  {#Accounting; #CustomerSupport; #EnterpriseDelivery};
+type EnterprisePermission__276951353 =
+  {#Accounting; #CustomerSupport; #DeviceManagement; #EnterpriseDelivery};
+type EnterprisePermission__736820665 =
+  {#Accounting; #CustomerSupport; #DeviceManagement; #EnterpriseDelivery};
+type EnterprisePermission__90448235 =
+  {#Accounting; #CustomerSupport; #DeviceManagement; #EnterpriseDelivery};
+type EnterpriseStaffPermissions__191911215 =
+  {permissions : [EnterprisePermission__276951353]; principalId : Principal};
+type EnterpriseStaffPermissions__263444675 =
+  {permissions : [EnterprisePermission__736820665]; principalId : Principal};
+type EnterpriseStaffPermissions__729087972 =
+  {permissions : [EnterprisePermission__90448235]; principalId : Principal};
+type Internal__455405067<K, V> =
+  {children : [var ?Node__279997185<K, V>]; data : Data__552063367<K, V>};
+type InvoiceStatus__1032197347 = {#Error; #Issued; #NotRequested; #Pending};
+type InvoiceStatus__693795159 = {#Error; #Issued; #NotRequested; #Pending};
+type InvoiceStatus__822110003 = {#Error; #Issued; #NotRequested; #Pending};
+type KioskBackgroundState__102472010 =
+  {
+    var backgroundImages : [BackgroundImage__392013817];
+    var nextImageId : Nat;
+    var suggestionConfig : SuggestionConfig__426121678
+  };
+type KioskBackgroundState__647838063 =
+  {
+    var backgroundImages : [BackgroundImage__974408625];
+    var nextImageId : Nat;
+    var suggestionConfig : SuggestionConfig__173559701
+  };
+type Leaf__114713147<K, V> = {data : Data__552063367<K, V>};
+type List__716101829<T> =
+  {
+    var blockIndex : Nat__93962160;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__93962160
+  };
+type List__852723865<T> = List__716101829<T>;
+type Map__190625089<K, V> = Map__719753394<K, V>;
+type Map__246123559<K, V> = Map__190625089<K, V>;
+type Map__719753394<K, V> =
+  {var root : Node__279997185<K, V>; var size : Nat__93962160};
+type MasterMenuCategory__299038117 = {id : Nat; name : Text; position : Nat};
+type MasterMenuCategory__403448552 = MasterMenuCategory__585966134;
+type MasterMenuCategory__585966134 = {id : Nat; name : Text; position : Nat};
+type MasterMenuCategory__724075098 = {id : Nat; name : Text; position : Nat};
+type MasterMenuItem__244648002 =
+  {
+    categoryId : Nat;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    isActive : Bool;
+    name : Text;
+    position : Nat;
+    price : Nat;
+    unit : ?Text
+  };
+type MasterMenuItem__276661906 =
+  {
+    categoryId : Nat;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    isActive : Bool;
+    name : Text;
+    position : Nat;
+    price : Nat;
+    unit : ?Text
+  };
+type MasterMenuItem__451040138 =
+  {
+    categoryId : Nat;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    isActive : Bool;
+    name : Text;
+    position : Nat;
+    price : Nat;
+    unit : ?Text
+  };
+type MasterMenuItem__703151929 = MasterMenuItem__244648002;
+type MasterMenuState__346269886 =
+  {
+    counters : {var nextCategoryId : Nat; var nextItemId : Nat};
+    masterCategories : Map__246123559<Nat, MasterMenuCategory__299038117>;
+    masterItems : Map__246123559<Nat, MasterMenuItem__276661906>;
+    restaurantOverrides : Map__246123559<(Nat, Nat), Bool>
+  };
+type MasterMenuState__497941297 =
+  {
+    counters : {var nextCategoryId : Nat; var nextItemId : Nat};
+    masterCategories : Map__246123559<Nat, MasterMenuCategory__724075098>;
+    masterItems : Map__246123559<Nat, MasterMenuItem__451040138>;
+    restaurantOverrides : Map__246123559<(Nat, Nat), Bool>
+  };
+type MenuCategoryId__381209481 = Nat;
+type MenuCategory__447177382 =
+  {
+    id : MenuCategoryId__381209481;
+    name : Text;
+    position : Nat;
+    restaurantId : RestaurantId__389023155
+  };
+type MenuCategory__620515165 =
+  {id : Nat; name : Text; position : Nat; restaurantId : Nat};
+type MenuCategory__661995234 =
+  {id : Nat; name : Text; position : Nat; restaurantId : Nat};
+type MenuCategory__749310820 = MenuCategory__447177382;
+type MenuItemId__18119667 = Nat;
+type MenuItem__1043021982 =
+  {
+    available : Bool;
+    categoryId : Nat;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    name : Text;
+    price : Nat;
+    restaurantId : Nat;
+    unit : ?Text
+  };
+type MenuItem__25360883 =
+  {
+    available : Bool;
+    categoryId : MenuCategoryId__381209481;
+    description : Text;
+    id : MenuItemId__18119667;
+    imageUrl : ?Text;
+    name : Text;
+    price : Nat;
+    restaurantId : RestaurantId__389023155;
+    unit : ?Text
+  };
+type MenuItem__374865833 =
+  {
+    available : Bool;
+    categoryId : Nat;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    name : Text;
+    price : Nat;
+    restaurantId : Nat;
+    unit : ?Text
+  };
+type MenuItem__800674085 = MenuItem__25360883;
+type MenuState__102008931 =
+  {
+    categories : Map__246123559<Nat, MenuCategory__620515165>;
+    counters : {var nextCategoryId : Nat; var nextItemId : Nat};
+    items : Map__246123559<Nat, MenuItem__1043021982>
+  };
+type MenuState__240965852 =
+  {
+    categories : Map__246123559<Nat, MenuCategory__661995234>;
+    counters : {var nextCategoryId : Nat; var nextItemId : Nat};
+    items : Map__246123559<Nat, MenuItem__374865833>
+  };
+type Nat__920180692 = Nat;
+type Nat__93962160 = Nat__920180692;
+type NewActor__522522789 =
+  {
+    var bpStateStable : BpState__86133685;
+    var developerProfiles :
+      Map__246123559<Principal, DeveloperProfile__917838688>;
+    var dynamicQRStore : Map__246123559<Nat, DynamicQRRecord__353241018>;
+    var enterpriseActivationIndex : Map__246123559<Text, Text>;
+    var enterpriseDevCounter : {var count : Nat};
+    var enterpriseDevices :
+      Map__246123559<Text, EnterpriseDeviceRecord__696085087>;
+    var enterpriseStaffPermissions :
+      Map__246123559<Principal, EnterpriseStaffPermissions__729087972>;
+    var kbState : KioskBackgroundState__102472010;
+    var kioskActivationIndex : Map__246123559<Text, Text>;
+    var kioskDeviceCounter : {var count : Nat};
+    var kioskDevices : Map__246123559<Text, DeviceRecord__263655629>;
+    var masterMenuState : MasterMenuState__497941297;
+    var menuState : MenuState__102008931;
+    var orderState : {var nextOrderId : Nat};
+    var orders : Map__246123559<Nat, Order__684695569>;
+    var reservationState : {var nextReservationId : Nat};
+    var reservations : Map__246123559<Nat, Reservation__516054575>;
+    var restaurantState : RestaurantState__141651054;
+    var staffRestaurantFilter : Map__246123559<Principal, [Nat]>;
+    var tableState : TableState__873326060;
+    var workerHeartbeatState : WorkerHeartbeatState__816807149
+  };
+type NewActor__598285943 =
+  {
+    var bpStateStable : BpState__397639325;
+    var developerProfiles :
+      Map__246123559<Principal, DeveloperProfile__527247777>;
+    var dynamicQRStore : Map__246123559<Nat, DynamicQRRecord__158954285>;
+    var enterpriseActivationIndex : Map__246123559<Text, Text>;
+    var enterpriseDevCounter : {var count : Nat};
+    var enterpriseDevices :
+      Map__246123559<Text, EnterpriseDeviceRecord__3389093>;
+    var enterpriseStaffPermissions :
+      Map__246123559<Principal, EnterpriseStaffPermissions__263444675>;
+    var kbState : KioskBackgroundState__647838063;
+    var kioskActivationIndex : Map__246123559<Text, Text>;
+    var kioskDeviceCounter : {var count : Nat};
+    var kioskDevices : Map__246123559<Text, DeviceRecord__563165162>;
+    var masterMenuState : MasterMenuState__346269886;
+    var menuState : MenuState__240965852;
+    var orderState : {var nextOrderId : Nat};
+    var orders : Map__246123559<Nat, Order__895158310>;
+    var reservationState : {var nextReservationId : Nat};
+    var reservations : Map__246123559<Nat, Reservation__349722148>;
+    var restaurantState : RestaurantState__169811032;
+    var staffRestaurantFilter : Map__246123559<Principal, [Nat]>;
+    var tableState : TableState__110382310
+  };
+type Node__279997185<K, V> =
+  {#internal : Internal__455405067<K, V>; #leaf : Leaf__114713147<K, V>};
+type OldActor__1051767801 =
+  {
+    var bpStateStable : BpState__86133685;
+    var developerProfiles :
+      Map__246123559<Principal, DeveloperProfile__917838688>;
+    var dynamicQRStore : Map__246123559<Nat, DynamicQRRecord__353241018>;
+    var enterpriseActivationIndex : Map__246123559<Text, Text>;
+    var enterpriseDevCounter : {var count : Nat};
+    var enterpriseDevices :
+      Map__246123559<Text, EnterpriseDeviceRecord__696085087>;
+    var enterpriseStaffPermissions :
+      Map__246123559<Principal, EnterpriseStaffPermissions__729087972>;
+    var kbState : KioskBackgroundState__102472010;
+    var kioskActivationIndex : Map__246123559<Text, Text>;
+    var kioskDeviceCounter : {var count : Nat};
+    var kioskDevices : Map__246123559<Text, DeviceRecord__263655629>;
+    var masterMenuState : MasterMenuState__497941297;
+    var menuState : MenuState__102008931;
+    var orderState : {var nextOrderId : Nat};
+    var orders : Map__246123559<Nat, Order__684695569>;
+    var reservationState : {var nextReservationId : Nat};
+    var reservations : Map__246123559<Nat, Reservation__516054575>;
+    var restaurantState : RestaurantState__141651054;
+    var staffRestaurantFilter : Map__246123559<Principal, [Nat]>;
+    var tableState : TableState__873326060
+  };
+type OldActor__892237491 = {var bpStateStable : BpState__397639325};
+type OrderId__197865225 = Nat;
+type OrderId__85453776 = OrderId__197865225;
+type OrderItem__694621471 =
+  {
+    itemNote : ?Text;
+    menuItemId : Nat;
+    name : Text;
+    price : Nat;
+    quantity : Nat;
+    unit : ?Text
+  };
+type OrderItem__970180480 =
+  {
+    itemNote : ?Text;
+    menuItemId : MenuItemId__18119667;
+    name : Text;
+    price : Nat;
+    quantity : Nat;
+    unit : ?Text
+  };
+type OrderItem__99712198 =
+  {
+    itemNote : ?Text;
+    menuItemId : Nat;
+    name : Text;
+    price : Nat;
+    quantity : Nat;
+    unit : ?Text
+  };
+type OrderStatus__151252296 =
+  {
+    #Cancelled;
+    #Completed;
+    #Delivered;
+    #DispatchCenter;
+    #FindingDriver;
+    #PaymentPending;
+    #Pending;
+    #PendingApproval;
+    #Preparing;
+    #Ready;
+    #WaitingDriver;
+    #WaitingDriverPayment
+  };
+type OrderStatus__488759816 =
+  {
+    #Cancelled;
+    #Completed;
+    #Delivered;
+    #DispatchCenter;
+    #FindingDriver;
+    #PaymentPending;
+    #Pending;
+    #PendingApproval;
+    #Preparing;
+    #Ready;
+    #WaitingDriver;
+    #WaitingDriverPayment
+  };
+type OrderStatus__591380551 =
+  {
+    #Cancelled;
+    #Completed;
+    #Delivered;
+    #DispatchCenter;
+    #FindingDriver;
+    #PaymentPending;
+    #Pending;
+    #PendingApproval;
+    #Preparing;
+    #Ready;
+    #WaitingDriver;
+    #WaitingDriverPayment
+  };
+type OrderType__122799475 = {#DeliveryOrder; #TableOrder};
+type OrderType__648534471 = {#DeliveryOrder; #TableOrder};
+type OrderType__684862520 = {#DeliveryOrder; #TableOrder};
+type Order__645163560 = Order__720360493;
+type Order__684695569 =
+  {
+    var ahamoveOrderId : ?Text;
+    createdAt : Int;
+    customerName : ?Text;
+    customerPhone : ?Text;
+    deliveryAddress : ?Text;
+    deliveryLat : ?Float;
+    deliveryLng : ?Float;
+    var dispatchNote : ?Text;
+    var driverInfo : ?DriverInfo__969074321;
+    var findingDriverSince : ?Int;
+    id : Nat;
+    var invoiceDate : ?Text;
+    var invoiceError : ?Text;
+    var invoiceNo : ?Text;
+    var invoicePdfUrl : ?Text;
+    var invoiceStatus : InvoiceStatus__693795159;
+    var isCod : Bool;
+    items : [OrderItem__99712198];
+    var maCQT : ?Text;
+    var maTraCuu : ?Text;
+    notes : ?Text;
+    var orderCode : ?Text;
+    orderType : OrderType__648534471;
+    var paymentConfirmedAt : ?Int;
+    paymentInfo : PaymentInfo__648771174;
+    restaurantId : Nat;
+    var sepayTransactionId : ?Text;
+    var sepayTransferAmount : ?Nat;
+    var shipperName : ?Text;
+    var shipperOrderId : ?Text;
+    var shipperPhone : ?Text;
+    var shippingFee : ?Nat;
+    var shippingProvider : ?Text;
+    var shippingStatus : ?ShippingStatus__92506378;
+    var shippingTransferStatus : ShippingTransferStatus__634600031;
+    var status : OrderStatus__151252296;
+    var subtotal : ?Nat;
+    tableIdentifier : Text;
+    var transactionCode : ?Text;
+    var vatInfo : ?VatInfo__285275687;
+    var vatRequest : Bool
+  };
+type Order__720360493 =
+  {
+    var ahamoveOrderId : ?Text;
+    createdAt : Timestamp__301639476;
+    customerName : ?Text;
+    customerPhone : ?Text;
+    deliveryAddress : ?Text;
+    deliveryLat : ?Float;
+    deliveryLng : ?Float;
+    var dispatchNote : ?Text;
+    var driverInfo : ?DriverInfo__402500722;
+    var findingDriverSince : ?Int;
+    id : OrderId__197865225;
+    var invoiceDate : ?Text;
+    var invoiceError : ?Text;
+    var invoiceNo : ?Text;
+    var invoicePdfUrl : ?Text;
+    var invoiceStatus : InvoiceStatus__822110003;
+    var isCod : Bool;
+    items : [OrderItem__970180480];
+    var maCQT : ?Text;
+    var maTraCuu : ?Text;
+    notes : ?Text;
+    var orderCode : ?Text;
+    orderType : OrderType__684862520;
+    var paymentConfirmedAt : ?Timestamp__301639476;
+    paymentInfo : PaymentInfo__108954280;
+    restaurantId : RestaurantId__389023155;
+    var sepayTransactionId : ?Text;
+    var sepayTransferAmount : ?Nat;
+    var shipperName : ?Text;
+    var shipperOrderId : ?Text;
+    var shipperPhone : ?Text;
+    var shippingFee : ?Nat;
+    var shippingProvider : ?Text;
+    var shippingStatus : ?ShippingStatus__933451714;
+    var shippingTransferStatus : ShippingTransferStatus__527758993;
+    var status : OrderStatus__591380551;
+    var subtotal : ?Nat;
+    tableIdentifier : Text;
+    var transactionCode : ?Text;
+    var vatInfo : ?VatInfo__529851972;
+    var vatRequest : Bool
+  };
+type Order__895158310 =
+  {
+    var ahamoveOrderId : ?Text;
+    createdAt : Int;
+    customerName : ?Text;
+    customerPhone : ?Text;
+    deliveryAddress : ?Text;
+    deliveryLat : ?Float;
+    deliveryLng : ?Float;
+    var dispatchNote : ?Text;
+    var driverInfo : ?DriverInfo__764634535;
+    var findingDriverSince : ?Int;
+    id : Nat;
+    var invoiceDate : ?Text;
+    var invoiceError : ?Text;
+    var invoiceNo : ?Text;
+    var invoicePdfUrl : ?Text;
+    var invoiceStatus : InvoiceStatus__1032197347;
+    var isCod : Bool;
+    items : [OrderItem__694621471];
+    var maCQT : ?Text;
+    var maTraCuu : ?Text;
+    notes : ?Text;
+    var orderCode : ?Text;
+    orderType : OrderType__122799475;
+    var paymentConfirmedAt : ?Int;
+    paymentInfo : PaymentInfo__325899086;
+    restaurantId : Nat;
+    var sepayTransactionId : ?Text;
+    var sepayTransferAmount : ?Nat;
+    var shipperName : ?Text;
+    var shipperOrderId : ?Text;
+    var shipperPhone : ?Text;
+    var shippingFee : ?Nat;
+    var shippingProvider : ?Text;
+    var shippingStatus : ?ShippingStatus__24550899;
+    var shippingTransferStatus : ShippingTransferStatus__1007528439;
+    var status : OrderStatus__488759816;
+    var subtotal : ?Nat;
+    tableIdentifier : Text;
+    var transactionCode : ?Text;
+    var vatInfo : ?VatInfo__433785538;
+    var vatRequest : Bool
+  };
+type OverrideKey__580624280 = (Nat, Nat);
+type PaymentInfo__108954280 =
+  {
+    var paidAt : ?Timestamp__301639476;
+    var paymentMethod : ?PaymentMethod__736241749;
+    var paymentStatus : PaymentStatus__299084309;
+    var stripePaymentIntentId : ?Text
+  };
+type PaymentInfo__325899086 =
+  {
+    var paidAt : ?Int;
+    var paymentMethod : ?PaymentMethod__741606643;
+    var paymentStatus : PaymentStatus__694791320;
+    var stripePaymentIntentId : ?Text
+  };
+type PaymentInfo__648771174 =
+  {
+    var paidAt : ?Int;
+    var paymentMethod : ?PaymentMethod__670311126;
+    var paymentStatus : PaymentStatus__817642440;
+    var stripePaymentIntentId : ?Text
+  };
+type PaymentMethod__670311126 =
+  {
+    #ApplePay;
+    #BankTransfer;
+    #CashierTerminal;
+    #Cod;
+    #CreditCard;
+    #CustomerOnline;
+    #SepayQR;
+    #Stripe;
+    #TingeeQR
+  };
+type PaymentMethod__736241749 =
+  {
+    #ApplePay;
+    #BankTransfer;
+    #CashierTerminal;
+    #Cod;
+    #CreditCard;
+    #CustomerOnline;
+    #SepayQR;
+    #Stripe;
+    #TingeeQR
+  };
+type PaymentMethod__741606643 =
+  {
+    #ApplePay;
+    #BankTransfer;
+    #CashierTerminal;
+    #Cod;
+    #CreditCard;
+    #CustomerOnline;
+    #SepayQR;
+    #Stripe;
+    #TingeeQR
+  };
+type PaymentStatus__299084309 =
+  {
+    #Failed;
+    #Paid;
+    #Pending;
+    #SepayExpired;
+    #SepayPaid;
+    #SepayPending;
+    #TingeeExpired;
+    #TingeePaid;
+    #TingeePending;
+    #Unpaid;
+    #WaitingDriverPayment
+  };
+type PaymentStatus__694791320 =
+  {
+    #Failed;
+    #Paid;
+    #Pending;
+    #SepayExpired;
+    #SepayPaid;
+    #SepayPending;
+    #TingeeExpired;
+    #TingeePaid;
+    #TingeePending;
+    #Unpaid;
+    #WaitingDriverPayment
+  };
+type PaymentStatus__817642440 =
+  {
+    #Failed;
+    #Paid;
+    #Pending;
+    #SepayExpired;
+    #SepayPaid;
+    #SepayPending;
+    #TingeeExpired;
+    #TingeePaid;
+    #TingeePending;
+    #Unpaid;
+    #WaitingDriverPayment
+  };
+type ReservationId__559395765 = Nat;
+type ReservationId__626843354 = ReservationId__559395765;
+type ReservationStatus__32186166 =
+  {#Arrived; #Cancelled; #Confirmed; #Pending};
+type ReservationStatus__703841619 =
+  {#Arrived; #Cancelled; #Confirmed; #Pending};
+type ReservationStatus__983099568 =
+  {#Arrived; #Cancelled; #Confirmed; #Pending};
+type Reservation__17293632 = Reservation__791493290;
+type Reservation__349722148 =
+  {
+    createdAt : Int;
+    customerEmail : ?Text;
+    customerName : Text;
+    customerPhone : Text;
+    date : Text;
+    durationMinutes : Nat;
+    id : Nat;
+    notes : ?Text;
+    partySize : Nat;
+    restaurantId : Nat;
+    var status : ReservationStatus__32186166;
+    tableId : ?Nat;
+    timeSlot : Text
+  };
+type Reservation__516054575 =
+  {
+    createdAt : Int;
+    customerEmail : ?Text;
+    customerName : Text;
+    customerPhone : Text;
+    date : Text;
+    durationMinutes : Nat;
+    id : Nat;
+    notes : ?Text;
+    partySize : Nat;
+    restaurantId : Nat;
+    var status : ReservationStatus__983099568;
+    tableId : ?Nat;
+    timeSlot : Text
+  };
+type Reservation__791493290 =
+  {
+    createdAt : Timestamp__301639476;
+    customerEmail : ?Text;
+    customerName : Text;
+    customerPhone : Text;
+    date : Text;
+    durationMinutes : Nat;
+    id : ReservationId__559395765;
+    notes : ?Text;
+    partySize : Nat;
+    restaurantId : RestaurantId__389023155;
+    var status : ReservationStatus__703841619;
+    tableId : ?TableId__859744924;
+    timeSlot : Text
+  };
+type RestaurantId__389023155 = Nat;
+type RestaurantId__782803970 = RestaurantId__389023155;
+type RestaurantState__141651054 =
+  {
+    counters : {var nextId : Nat};
+    restaurants : Map__246123559<Nat, Restaurant__965970354>
+  };
+type RestaurantState__169811032 =
+  {
+    counters : {var nextId : Nat};
+    restaurants : Map__246123559<Nat, Restaurant__833405131>
+  };
+type Restaurant__220484858 = Restaurant__761304188;
+type Restaurant__761304188 =
+  {
+    var address : Text;
+    var autoPaymentConfirmationApp : AutoPaymentApp__807601766;
+    var autoPaymentConfirmationEnabled : Bool;
+    var autoShipperEnabled : Bool;
+    var bannerImageUrl : ?Text;
+    var brand1Name : ?Text;
+    var brand2Name : ?Text;
+    var brand3Name : ?Text;
+    var brand4Name : ?Text;
+    var brand5Name : ?Text;
+    var coordinateLatitude : ?Float;
+    var coordinateLongitude : ?Float;
+    var deliveryRadiusKm : ?Nat;
+    var deliveryServiceHours : ?Text;
+    var driverDispatchMode : DriverDispatchMode__879624917;
+    id : RestaurantId__389023155;
+    var name : Text;
+    ownerId : Principal;
+    var sepayApiToken : ?Text;
+    var sepayEnabled : Bool;
+    var shippingFeeMode : ?ShippingFeeMode__101664272;
+    var staffMembers : [StaffMember__154058420];
+    var stripeEnabled : Bool;
+    var stripePublishableKey : ?Text;
+    var stripeSecretKey : ?Text;
+    var tableServiceHours : ?Text
+  };
+type Restaurant__833405131 =
+  {
+    var address : Text;
+    var autoPaymentConfirmationApp : AutoPaymentApp__772762555;
+    var autoPaymentConfirmationEnabled : Bool;
+    var autoShipperEnabled : Bool;
+    var bannerImageUrl : ?Text;
+    var brand1Name : ?Text;
+    var brand2Name : ?Text;
+    var brand3Name : ?Text;
+    var brand4Name : ?Text;
+    var brand5Name : ?Text;
+    var coordinateLatitude : ?Float;
+    var coordinateLongitude : ?Float;
+    var deliveryRadiusKm : ?Nat;
+    var deliveryServiceHours : ?Text;
+    var driverDispatchMode : DriverDispatchMode__868499028;
+    id : Nat;
+    var name : Text;
+    ownerId : Principal;
+    var sepayApiToken : ?Text;
+    var sepayEnabled : Bool;
+    var shippingFeeMode : ?ShippingFeeMode__501180746;
+    var staffMembers : [StaffMember__71477275];
+    var stripeEnabled : Bool;
+    var stripePublishableKey : ?Text;
+    var stripeSecretKey : ?Text;
+    var tableServiceHours : ?Text
+  };
+type Restaurant__965970354 =
+  {
+    var address : Text;
+    var autoPaymentConfirmationApp : AutoPaymentApp__31538113;
+    var autoPaymentConfirmationEnabled : Bool;
+    var autoShipperEnabled : Bool;
+    var bannerImageUrl : ?Text;
+    var brand1Name : ?Text;
+    var brand2Name : ?Text;
+    var brand3Name : ?Text;
+    var brand4Name : ?Text;
+    var brand5Name : ?Text;
+    var coordinateLatitude : ?Float;
+    var coordinateLongitude : ?Float;
+    var deliveryRadiusKm : ?Nat;
+    var deliveryServiceHours : ?Text;
+    var driverDispatchMode : DriverDispatchMode__179970566;
+    id : Nat;
+    var name : Text;
+    ownerId : Principal;
+    var sepayApiToken : ?Text;
+    var sepayEnabled : Bool;
+    var shippingFeeMode : ?ShippingFeeMode__662221072;
+    var staffMembers : [StaffMember__345591695];
+    var stripeEnabled : Bool;
+    var stripePublishableKey : ?Text;
+    var stripeSecretKey : ?Text;
+    var tableServiceHours : ?Text
+  };
+type RetryPolicy__335090493 =
+  {
+    backoffMultiplier : Float;
+    baseDelayMs : Nat;
+    maxDelayMs : Nat;
+    maxRetries : Nat
+  };
+type RetryPolicy__489755225 =
+  {
+    backoffMultiplier : Float;
+    baseDelayMs : Nat;
+    maxDelayMs : Nat;
+    maxRetries : Nat
+  };
+type RetryPolicy__938852773 = RetryPolicy__489755225;
+type SavedRecipientInfo__103058906 = SavedRecipientInfo__873436577;
+type SavedRecipientInfo__166026995 =
+  {locationName : Text; recipientName : Text; recipientPhone : Text};
+type SavedRecipientInfo__873436577 =
+  {locationName : Text; recipientName : Text; recipientPhone : Text};
+type SavedRecipientInfo__909933635 =
+  {locationName : Text; recipientName : Text; recipientPhone : Text};
+type ShippingFeeMode__101664272 = {#CustomerPays; #RestaurantPays};
+type ShippingFeeMode__501180746 = {#CustomerPays; #RestaurantPays};
+type ShippingFeeMode__662221072 = {#CustomerPays; #RestaurantPays};
+type ShippingStatus__24550899 =
+  {
+    #Delivering;
+    #DeliveryFailed;
+    #PickedUp;
+    #SearchingShipper;
+    #ShipperAccepted
+  };
+type ShippingStatus__92506378 =
+  {
+    #Delivering;
+    #DeliveryFailed;
+    #PickedUp;
+    #SearchingShipper;
+    #ShipperAccepted
+  };
+type ShippingStatus__933451714 =
+  {
+    #Delivering;
+    #DeliveryFailed;
+    #PickedUp;
+    #SearchingShipper;
+    #ShipperAccepted
+  };
+type ShippingTransferStatus__1007528439 =
+  {#completed; #failed; #notRequired; #notStarted; #pending};
+type ShippingTransferStatus__527758993 =
+  {#completed; #failed; #notRequired; #notStarted; #pending};
+type ShippingTransferStatus__634600031 =
+  {#completed; #failed; #notRequired; #notStarted; #pending};
+type StaffMember__154058420 =
+  {role : StaffRole__566220803; staffId : Principal};
+type StaffMember__345591695 =
+  {role : StaffRole__903270527; staffId : Principal};
+type StaffMember__71477275 =
+  {role : StaffRole__74846767; staffId : Principal};
+type StaffRole__334678748 =
+  {#Admin; #Cashier; #Delivery; #KioskOrder; #Kitchen; #Waiter};
+type StaffRole__566220803 = StaffRole__334678748;
+type StaffRole__74846767 =
+  {#Admin; #Cashier; #Delivery; #KioskOrder; #Kitchen; #Waiter};
+type StaffRole__903270527 =
+  {#Admin; #Cashier; #Delivery; #KioskOrder; #Kitchen; #Waiter};
+type SuggestionConfig__173559701 =
+  {maxAddOns : Nat; maxDrinks : Nat; suggestionsEnabled : Bool};
+type SuggestionConfig__203930277 =
+  {maxAddOns : Nat; maxDrinks : Nat; suggestionsEnabled : Bool};
+type SuggestionConfig__426121678 =
+  {maxAddOns : Nat; maxDrinks : Nat; suggestionsEnabled : Bool};
+type TableId__768410131 = TableId__859744924;
+type TableId__859744924 = Nat;
+type TableState__110382310 =
+  {
+    counters : {var nextId : Nat};
+    tables : Map__246123559<Nat, Table__58880593>
+  };
+type TableState__873326060 =
+  {
+    counters : {var nextId : Nat};
+    tables : Map__246123559<Nat, Table__132271604>
+  };
+type Table__132271604 =
+  {id : Nat; qrCodeUrl : Text; restaurantId : Nat; tableNumber : Text};
+type Table__252460494 =
+  {
+    id : TableId__859744924;
+    qrCodeUrl : Text;
+    restaurantId : RestaurantId__389023155;
+    tableNumber : Text
+  };
+type Table__58880593 =
+  {id : Nat; qrCodeUrl : Text; restaurantId : Nat; tableNumber : Text};
+type Table__898263932 = Table__252460494;
+type Timestamp__301639476 = Int;
+type TransactionInfo__590320815 =
+  {
+    amount : ?Nat;
+    bankCode : ?Text;
+    paidAt : ?Text;
+    paymentMethod : ?Text;
+    reference : ?Text;
+    transactionCode : ?Text
+  };
+type TransactionInfo__78177996 =
+  {
+    amount : ?Nat;
+    bankCode : ?Text;
+    paidAt : ?Text;
+    paymentMethod : ?Text;
+    reference : ?Text;
+    transactionCode : ?Text
+  };
+type TransactionInfo__813869238 =
+  {
+    amount : ?Nat;
+    bankCode : ?Text;
+    paidAt : ?Text;
+    paymentMethod : ?Text;
+    reference : ?Text;
+    transactionCode : ?Text
+  };
+type VatInfo__285275687 =
+  {
+    accountNo : ?Text;
+    address : Text;
+    buyerName : Text;
+    email : Text;
+    taxCode : ?Text
+  };
+type VatInfo__433785538 =
+  {
+    accountNo : ?Text;
+    address : Text;
+    buyerName : Text;
+    email : Text;
+    taxCode : ?Text
+  };
+type VatInfo__529851972 =
+  {
+    accountNo : ?Text;
+    address : Text;
+    buyerName : Text;
+    email : Text;
+    taxCode : ?Text
+  };
+type WorkerHeartbeatState__816807149 =
+  {
+    heartbeats :
+      Map__246123559<WorkerId__175954616, WorkerHeartbeat__449886793>;
+    var retryPolicy : RetryPolicy__335090493
+  };
+type WorkerHeartbeat__449886793 = {var lastHeartbeatAt : Int};
+type WorkerHeartbeat__478830414 = {var lastHeartbeatAt : Int};
+type WorkerHeartbeat__607281576 = WorkerHeartbeat__478830414;
+type WorkerId__1037168968 = Text;
+type WorkerId__126636776 = WorkerId__1037168968;
+type WorkerId__175954616 = Text;
+{
+  "20260724_140000" : (old : OldActor__892237491) -> NewActor__598285943;
+  "20260724_155536" : (old : OldActor__1051767801) -> NewActor__522522789
+}
+actor  {
+  stable var bpStateStable :
+    {
+      bannerCounter : {var nextId : Nat};
+      bannerImages : List__852723865<BannerImage__717661576>;
+      profile : BusinessProfile__553200108;
+      savedRecipients :
+        Map__246123559<Principal, SavedRecipientInfo__103058906>
+    };
+  stable var developerProfiles :
+    {
+      var root : Node__279997185<Principal, DeveloperProfile__255081462>;
+      var size : Nat__93962160
+    };
+  stable var dynamicQRStore :
+    {
+      var root : Node__279997185<OrderId__85453776, DynamicQRRecord__54307708>;
+      var size : Nat__93962160
+    };
+  stable var enterpriseActivationIndex :
+    {var root : Node__279997185<Text, Text>; var size : Nat__93962160};
+  stable var enterpriseDevCounter : {var count : Nat};
+  stable var enterpriseDevices :
+    {
+      var root : Node__279997185<Text, EnterpriseDeviceRecord__1065887081>;
+      var size : Nat__93962160
+    };
+  stable var enterpriseStaffPermissions :
+    {
+      var root :
+        Node__279997185<Principal, EnterpriseStaffPermissions__191911215>;
+      var size : Nat__93962160
+    };
+  stable var kbState :
+    {
+      var backgroundImages : [BackgroundImage__106943710];
+      var nextImageId : Nat;
+      var suggestionConfig : SuggestionConfig__203930277
+    };
+  stable var kioskActivationIndex :
+    {var root : Node__279997185<Text, Text>; var size : Nat__93962160};
+  stable var kioskDeviceCounter : {var count : Nat};
+  stable var kioskDevices :
+    {
+      var root : Node__279997185<Text, DeviceRecord__938841636>;
+      var size : Nat__93962160
+    };
+  stable var masterMenuState :
+    {
+      counters : {var nextCategoryId : Nat; var nextItemId : Nat};
+      masterCategories : Map__246123559<Nat, MasterMenuCategory__403448552>;
+      masterItems : Map__246123559<Nat, MasterMenuItem__703151929>;
+      restaurantOverrides : Map__246123559<OverrideKey__580624280, Bool>
+    };
+  stable var menuState :
+    {
+      categories :
+        Map__246123559<MenuCategoryId__381209481, MenuCategory__749310820>;
+      counters : {var nextCategoryId : Nat; var nextItemId : Nat};
+      items : Map__246123559<MenuItemId__18119667, MenuItem__800674085>
+    };
+  stable var orderState : {var nextOrderId : OrderId__85453776};
+  stable var orders :
+    {
+      var root : Node__279997185<OrderId__85453776, Order__645163560>;
+      var size : Nat__93962160
+    };
+  stable var reservationState :
+    {var nextReservationId : ReservationId__626843354};
+  stable var reservations :
+    {
+      var root :
+        Node__279997185<ReservationId__626843354, Reservation__17293632>;
+      var size : Nat__93962160
+    };
+  stable var restaurantState :
+    {
+      counters : {var nextId : RestaurantId__782803970};
+      restaurants :
+        Map__246123559<RestaurantId__782803970, Restaurant__220484858>
+    };
+  stable var staffRestaurantFilter :
+    {
+      var root : Node__279997185<Principal, [RestaurantId__389023155]>;
+      var size : Nat__93962160
+    };
+  stable var tableState :
+    {
+      counters : {var nextId : Nat};
+      tables : Map__246123559<TableId__768410131, Table__898263932>
+    };
+  stable var workerHeartbeatState :
+    {
+      heartbeats :
+        Map__246123559<WorkerId__126636776, WorkerHeartbeat__607281576>;
+      var retryPolicy : RetryPolicy__938852773
+    }
+};
